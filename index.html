@@ -4,6 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light dark">
+<script>
+/* Runs before first paint so a stored theme never flashes the wrong one.
+   Inline and render-blocking on purpose — this is the one case where that is right. */
+(function(){try{var t=localStorage.getItem('theme');
+document.documentElement.dataset.theme=(t==='light'||t==='dark')?t:'system';}
+catch(e){document.documentElement.dataset.theme='system';}})();
+</script>
 
 <title>Shantanu Chaudhary — Backend Engineer, Payments &amp; Distributed Systems</title>
 <meta name="description" content="Backend engineer in Bengaluru building payments infrastructure in Go and Java. I own the BBPS bill-payments backend at slice and built DreamPlay's backend at Dream11. Open to backend and applied-AI roles, remote or abroad.">
@@ -126,6 +133,11 @@
   --sky:        light-dark(#d9e3ef, #232c38);
   --on-dark:    #f7f4ee;
 
+  /* Accent, not black, is the primary action colour. */
+  --accent:      light-dark(#8e4327, #e59a70);
+  --accent-deep: light-dark(#73351e, #f0b492);
+  --on-accent:   light-dark(#faf7f2, #1c110a);
+
   --focus:      light-dark(#8e4327, #e0a07f);
 
   --serif: "Instrument Serif", Georgia, "Times New Roman", Times, serif;
@@ -136,6 +148,12 @@
   --radius: 14px;
   --maxw: 1120px;
 }
+
+/* Manual theme override. Because every token is a light-dark() pair, flipping
+   color-scheme is the whole implementation — no second palette to maintain.
+   No attribute (or "system") falls through to the OS preference. */
+:root[data-theme="light"]{ color-scheme: light; }
+:root[data-theme="dark"]{ color-scheme: dark; }
 
 *,*::before,*::after{ box-sizing:border-box; }
 
@@ -215,6 +233,29 @@ a,button,[id]{ scroll-margin-top:5rem; }
 }
 .site-nav a:hover{ color:var(--ink); border-bottom-color:var(--ink); }
 
+.head-right{ display:flex; align-items:center; gap:clamp(.8rem,2vw,1.5rem); flex-wrap:wrap; }
+
+.theme-toggle{
+  display:inline-flex; align-items:center; gap:.4rem;
+  font-family:var(--mono); font-size:.7rem; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--ink-mid); background:var(--card);
+  border:1px solid var(--rule); border-radius:999px;
+  padding:.34rem .7rem .34rem .55rem; cursor:pointer;
+  transition:color .18s ease, border-color .18s ease, background .18s ease;
+}
+.theme-toggle:hover{ color:var(--ink); border-color:var(--ink-soft); }
+.theme-toggle .ic{
+  width:14px; height:14px; flex:none;
+  fill:none; stroke:currentColor; stroke-width:1.7;
+  stroke-linecap:round; stroke-linejoin:round;
+}
+/* show only the icon for the active state */
+.theme-toggle .ic{ display:none; }
+:root[data-theme="system"] .ic-system,
+:root:not([data-theme]) .ic-system,
+:root[data-theme="light"] .ic-light,
+:root[data-theme="dark"]  .ic-dark{ display:block; }
+
 /* ---------- hero ---------- */
 .hero{ padding-block: clamp(2rem, 6vw, 4rem) clamp(1.5rem,4vw,2.5rem); }
 .status{
@@ -255,14 +296,19 @@ h1 .em{ font-style:italic; }
 .cta{ display:flex; flex-wrap:wrap; gap:.6rem; }
 .btn{
   display:inline-flex; align-items:center; gap:.45rem;
-  font-family:var(--mono); font-size:.78rem; letter-spacing:.06em;
+  font-family:var(--mono); font-size:.78rem; letter-spacing:.04em;
   text-decoration:none; padding:.62rem 1.05rem; border-radius:999px;
-  border:1px solid var(--rule); background:var(--card); color:var(--ink);
-  transition:transform .18s ease, background .18s ease, border-color .18s ease;
+  border:1px solid var(--ink-soft); background:var(--card); color:var(--ink);
+  transition:background .18s ease, border-color .18s ease, color .18s ease;
 }
-.btn:hover{ transform:translateY(-2px); border-color:var(--ink-soft); }
-.btn--solid{ background:var(--ink); color:var(--paper); border-color:var(--ink); }
-.btn--solid:hover{ background:var(--ink-card); }
+.btn:hover{ background:var(--ink); color:var(--paper); border-color:var(--ink); }
+/* outbound links say so */
+.btn[href^="http"]::after{
+  content:"↗"; font-size:.95em; line-height:1; margin-left:.15rem; opacity:.65;
+}
+.btn:hover[href^="http"]::after{ opacity:1; }
+.btn--solid{ background:var(--accent); color:var(--on-accent); border-color:var(--accent); }
+.btn--solid:hover{ background:var(--accent-deep); border-color:var(--accent-deep); color:var(--on-accent); }
 .btn svg{ width:13px; height:13px; flex:none; }
 
 /* ---------- facts ---------- */
@@ -316,9 +362,21 @@ h1 .em{ font-style:italic; }
 
 /* ---------- sections + bento ---------- */
 section{ padding-block: clamp(2.5rem, 6vw, 4.25rem); }
+/* Heading left, note right. Baseline alignment pinned the note's FIRST line to
+   the big heading's baseline, so a two-line note hung awkwardly below it.
+   Aligning the bottoms instead reads as one block. */
 .sec-head{
-  display:flex; align-items:baseline; justify-content:space-between;
-  gap:1rem; flex-wrap:wrap; margin-bottom:clamp(1.25rem,3vw,1.9rem);
+  display:grid; gap:.55rem;
+  margin-bottom:clamp(1.25rem,3vw,1.9rem);
+}
+@media (min-width:780px){
+  .sec-head{
+    grid-template-columns:auto minmax(0,44ch);
+    justify-content:space-between;
+    align-items:end;
+    column-gap:clamp(1.5rem,4vw,3rem);
+  }
+  .sec-note{ padding-bottom:.45rem; }
 }
 h2{
   font-family:var(--serif); font-weight:400;
@@ -406,38 +464,44 @@ h2{
   border-radius:999px; padding:.18rem .52rem; background:var(--paper-2);
 }
 
-/* tinted variants */
-.card--ink{ background:var(--ink-card); border-color:transparent; color:var(--on-dark); }
-.card--indigo{ background:var(--indigo); border-color:transparent; color:var(--on-dark); }
-.card--clay{ background:var(--clay); border-color:transparent; color:var(--on-dark); }
-.card--moss{ background:var(--moss); border-color:transparent; color:var(--on-dark); }
+/* Tinted variants rebind the text tokens locally instead of overriding each
+   element. Every rule downstream already reads --ink / --ink-mid / --ink-soft,
+   so they all follow automatically — no per-element overrides and no
+   specificity races (the previous version lost one: `.card ul.bul strong`
+   at (0,2,1) beat `.card--ink strong` at (0,1,1), which put near-black bold
+   text on the dark cards in light mode). */
+.card--ink,.card--indigo,.card--clay,.card--moss{
+  border-color:transparent;
+  color:var(--on-dark);
+  --ink:      var(--on-dark);
+  --ink-mid:  color-mix(in srgb, var(--on-dark) 92%, transparent);
+  --ink-soft: color-mix(in srgb, var(--on-dark) 84%, transparent);
+  --rule:     color-mix(in srgb, var(--on-dark) 26%, transparent);
+  --paper-2:  transparent;
+  --accent:   var(--on-dark);
+}
+.card--ink{ background:var(--ink-card); }
+.card--indigo{ background:var(--indigo); }
+.card--clay{ background:var(--clay); }
+.card--moss{ background:var(--moss); }
 
-.card--ink h3,.card--indigo h3,.card--clay h3,.card--moss h3,
-.card--ink strong,.card--indigo strong,.card--clay strong,.card--moss strong{ color:var(--on-dark); }
-.card--ink p,.card--indigo p,.card--clay p,.card--moss p,
-.card--ink ul.bul,.card--indigo ul.bul,.card--clay ul.bul,.card--moss ul.bul{
-  color:color-mix(in srgb, var(--on-dark) 92%, transparent);
-}
-.card--ink .label,.card--indigo .label,.card--clay .label,.card--moss .label,
-.card--ink .meta,.card--indigo .meta,.card--clay .meta,.card--moss .meta{
-  color:color-mix(in srgb, var(--on-dark) 84%, transparent);
-}
-.card--ink .tags li,.card--indigo .tags li,.card--clay .tags li,.card--moss .tags li{
-  color:color-mix(in srgb, var(--on-dark) 92%, transparent);
-  border-color:color-mix(in srgb, var(--on-dark) 26%, transparent);
-  background:transparent;
-}
-.card--ink .btn{
+.card--ink .btn,.card--indigo .btn,.card--clay .btn,.card--moss .btn{
   background:transparent; color:var(--on-dark);
-  border-color:color-mix(in srgb, var(--on-dark) 32%, transparent);
+  border-color:color-mix(in srgb, var(--on-dark) 38%, transparent);
 }
-.card--ink .btn:hover{ border-color:var(--on-dark); }
+.card--ink .btn:hover,.card--indigo .btn:hover,
+.card--clay .btn:hover,.card--moss .btn:hover{
+  border-color:var(--on-dark);
+  background:color-mix(in srgb, var(--on-dark) 10%, transparent);
+}
 
-.card--rose{ background:var(--rose); border-color:transparent; }
-.card--sky{ background:var(--sky); border-color:transparent; }
-.card--rose .tags li,.card--sky .tags li{
-  background:transparent; border-color:color-mix(in srgb, var(--ink) 18%, transparent);
+.card--rose,.card--sky{
+  border-color:transparent;
+  --rule:    color-mix(in srgb, var(--ink) 18%, transparent);
+  --paper-2: transparent;
 }
+.card--rose{ background:var(--rose); }
+.card--sky{ background:var(--sky); }
 .card--quiet{ background:var(--paper-2); }
 
 .live{ color:var(--moss); font-weight:600; }
@@ -456,8 +520,13 @@ h2{
   font-family:var(--mono); font-size:.73rem; letter-spacing:.06em;
   color:var(--ink-soft);
 }
-.site-foot a{ color:var(--ink-mid); text-decoration:none; }
-.site-foot a:hover{ color:var(--ink); text-decoration:underline; text-underline-offset:3px; }
+.site-foot a{
+  color:var(--ink-mid);
+  text-decoration:underline; text-underline-offset:4px; text-decoration-thickness:1px;
+  text-decoration-color:color-mix(in srgb, currentColor 45%, transparent);
+  transition:color .18s ease, text-decoration-color .18s ease;
+}
+.site-foot a:hover{ color:var(--accent); text-decoration-color:currentColor; }
 .foot-links{ display:flex; gap:1rem; flex-wrap:wrap; }
 
 @media (prefers-reduced-motion: reduce){
@@ -484,13 +553,21 @@ h2{
 <div class="wrap">
   <header class="site-head">
     <a class="mark" href="#main"><b>Shantanu Chaudhary</b> — Backend Engineer</a>
-    <nav class="site-nav" aria-label="Primary">
-      <a href="#work">Work</a>
-      <a href="#agents">Agents</a>
-      <a href="#projects">Projects</a>
-      <a href="#background">Background</a>
-      <a href="#contact">Contact</a>
-    </nav>
+    <div class="head-right">
+      <nav class="site-nav" aria-label="Primary">
+        <a href="#work">Work</a>
+        <a href="#agents">Agents</a>
+        <a href="#projects">Projects</a>
+        <a href="#background">Background</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button class="theme-toggle" type="button" id="theme-toggle" aria-label="Colour theme: follow system">
+        <svg class="ic ic-system" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5a8.5 8.5 0 0 0 0 17z" fill="currentColor" stroke="none"/></svg>
+        <svg class="ic ic-light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.6"/><path d="M12 2v2.4M12 19.6V22M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2 12h2.4M19.6 12H22M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7"/></svg>
+        <svg class="ic ic-dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.2A8.4 8.4 0 0 1 9.8 4 8.5 8.5 0 1 0 20 14.2z"/></svg>
+        <span class="theme-word">System</span>
+      </button>
+    </div>
   </header>
 </div>
 
@@ -813,6 +890,32 @@ h2{
 </div>
 
 <script>
+/* Theme toggle: system -> light -> dark -> system */
+(function () {
+  var btn = document.getElementById('theme-toggle');
+  if (!btn) return;
+  var word = btn.querySelector('.theme-word');
+  var ORDER = ['system', 'light', 'dark'];
+  var LABEL = { system: 'follow system', light: 'light', dark: 'dark' };
+
+  function paint(v) {
+    document.documentElement.dataset.theme = v;
+    if (word) word.textContent = v.charAt(0).toUpperCase() + v.slice(1);
+    btn.setAttribute('aria-label', 'Colour theme: ' + LABEL[v] + '. Click to change.');
+  }
+  paint(document.documentElement.dataset.theme || 'system');
+
+  btn.addEventListener('click', function () {
+    var cur = document.documentElement.dataset.theme || 'system';
+    var next = ORDER[(ORDER.indexOf(cur) + 1) % ORDER.length];
+    paint(next);
+    try {
+      if (next === 'system') localStorage.removeItem('theme');
+      else localStorage.setItem('theme', next);
+    } catch (e) {}
+  });
+})();
+
 (function () {
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var items = document.querySelectorAll('.reveal');
