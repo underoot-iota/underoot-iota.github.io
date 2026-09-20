@@ -1,0 +1,8 @@
+# Everything is welcome here, including AI crawlers.
+# The point of this site is to be read — by people, by search engines,
+# and by the answer engines recruiters increasingly ask about candidates.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://underoot-iota.github.io/sitemap.xml
