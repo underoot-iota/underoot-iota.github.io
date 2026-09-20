@@ -400,21 +400,19 @@ section{ padding-block:clamp(2.25rem,5vw,3.5rem); border-top:1px solid var(--bor
   <!-- ===================== HERO ===================== -->
   <div class="hero">
     <div>
-      <h1>I build the services that move money.</h1>
+      <h1>Backend engineer, payments &amp; distributed systems.</h1>
 
       <p class="lede">
-        Backend engineer working on payments infrastructure and distributed systems — and on the
-        agents that watch them run.
+        I build payments infrastructure at slice, and LLM agents that run in production.
       </p>
 
       <p class="hero-body">
         I'm a Software Development Engineer at <strong>slice</strong> in Bengaluru, where I own the
         BBPS bill-payments backend: a Go service carrying <strong>1.7M+ transactions a month</strong>.
-        Before that I built <strong>DreamPlay's backend at Dream11</strong> from the ground up, as the
-        product went from zero to <strong>1.5M+ users in six months</strong>. I work in Go, Java and
-        Python across gRPC, Kafka, PostgreSQL and Redis on AWS and Kubernetes — and I build
-        production systems with LLM agents, including one that reviews every deploy before anyone
-        trusts it.
+        Before that I built <strong>DreamPlay's backend at Dream11</strong> as the product went from
+        zero to <strong>1.5M+ users in six months</strong>. I work in Go, Java and Python across gRPC,
+        Kafka, PostgreSQL and Redis on AWS and Kubernetes, and I build production systems with LLM
+        agents, including one that reviews every production deploy.
       </p>
 
       <p class="links-row">
@@ -428,7 +426,7 @@ section{ padding-block:clamp(2.25rem,5vw,3.5rem); border-top:1px solid var(--bor
       <div><dt>Now</dt><dd>SDE, App Payments — slice</dd></div>
       <div><dt>Previously</dt><dd>Dream11 · BrowserStack · Toplyne</dd></div>
       <div><dt>Based in</dt><dd>Bengaluru, India</dd></div>
-      <div><dt>Open to</dt><dd>Backend, distributed systems and applied-AI roles — remote or abroad</dd></div>
+      <div><dt>Open to</dt><dd>Backend, distributed systems and applied-AI roles, remote or abroad</dd></div>
       <div><dt>Education</dt><dd>B.Tech IT, IIIT Allahabad, 2024</dd></div>
     </dl>
   </div>
@@ -440,7 +438,7 @@ section{ padding-block:clamp(2.25rem,5vw,3.5rem); border-top:1px solid var(--bor
     <p>
       <strong>Shantanu Chaudhary</strong> is a backend engineer based in Bengaluru, India, working on
       payments infrastructure and distributed systems. He is a Software Development Engineer on the
-      App Payments pod at slice, where he owns the BBPS bill-payments backend — a Go service handling
+      App Payments pod at slice, where he owns the BBPS bill-payments backend, a Go service handling
       over 1.7 million transactions a month. Before slice, Shantanu built the backend for DreamPlay
       at Dream11, including its matchmaking and contest-join services, as the product scaled from
       zero to over 1.5 million users in six months. He works in Go, Java and Python across gRPC,
@@ -454,7 +452,7 @@ section{ padding-block:clamp(2.25rem,5vw,3.5rem); border-top:1px solid var(--bor
   <section id="work" aria-labelledby="work-h">
     <div class="sec-head">
       <h2 id="work-h">Where I've worked</h2>
-      <p class="sec-note">Production systems in fintech and real-money gaming. The code is confidential; the engineering isn't.</p>
+      <p class="sec-note">Production systems in fintech and real-money gaming.</p>
     </div>
 
     <article class="entry entry--lead">
@@ -465,12 +463,12 @@ section{ padding-block:clamp(2.25rem,5vw,3.5rem); border-top:1px solid var(--bor
       </div>
       <div class="entry-body">
         <h3>Software Development Engineer, App Payments</h3>
-        <p><strong>I own the bill-payments backend</strong> — the Go service behind every BBPS bill in the app, carrying <strong>1.7M+ transactions a month</strong>. I design it, ship it and carry the pager for it, along with three other services on the payments path.</p>
+        <p><strong>I own the bill-payments backend</strong>: the Go service behind every BBPS bill in the app, carrying <strong>1.7M+ transactions a month</strong>. I design and ship it, and I'm on call for it and three other services on the payments path.</p>
         <ul class="bul">
           <li><strong>Built bill discovery over SMS</strong>, so the app finds your bills instead of asking you to type account numbers. It adds <strong>600+ bills a day</strong>. Bringing electricity, gas, prepaid and loan billers onto it meant parsing whatever each vendor calls a plan and normalising it into one model.</li>
-          <li><strong>Redesigned how billers work.</strong> A registry with capability overlays turned onboarding a biller from a change scattered across the codebase into a single file — and a CI gate keeps it that way.</li>
+          <li><strong>Redesigned how billers work.</strong> A registry with capability overlays turned onboarding a biller from a change scattered across the codebase into a single file, and a CI gate keeps it that way.</li>
           <li><strong>Made the money path correct under concurrency.</strong> Postgres advisory locks and read-then-write dedupe where account creation has to serialise, optimistic checks where contention is rare. A financial write happens once or not at all.</li>
-          <li><strong>Took the ceiling off the bill pipeline</strong> — indexed, time-windowed queries in place of full-table scans so batch jobs finish inside their window, and asynchronous offset commits to unblock Kafka consumer concurrency.</li>
+          <li><strong>Made the bill pipeline scale</strong>: indexed, time-windowed queries in place of full-table scans so batch jobs finish inside their window, and asynchronous offset commits to unblock Kafka consumer concurrency.</li>
           <li><strong>Delivered the second-network path for a zero-forex Visa credit card</strong> in card issuance: a tenant-aware CCMS client, network-aware limits and a Kafka onboarding consumer.</li>
         </ul>
         <p class="stack">Go · gRPC · Kafka · PostgreSQL · Redis · AWS · Kubernetes · ArgoCD</p>
@@ -485,11 +483,11 @@ section{ padding-block:clamp(2.25rem,5vw,3.5rem); border-top:1px solid var(--bor
       </div>
       <div class="entry-body">
         <h3>Software Development Engineer 1 — DreamPlay</h3>
-        <p><strong>I built DreamPlay's backend from the ground up</strong> — joining when it was an idea and staying through <strong>0 → 1.5M+ users in six months</strong>.</p>
+        <p><strong>I built DreamPlay's backend</strong>, joining when it was an idea and staying through <strong>zero to 1.5M+ users in six months</strong>.</p>
         <ul class="bul">
           <li>The <strong>matchmaking and contest-join services</strong> in Java (Vert.x): the core loop of a real-money game, where a stuck join is someone's money in limbo.</li>
           <li>A <strong>Glicko-based rating system</strong> so players met opponents at their level, plus IP-based fair-play filters, multi-device login prevention and a live liquidity indicator.</li>
-          <li><strong>Scaled it</strong> — a non-cluster Redis design that cut ElastiCache spend substantially, and a sticky-session multi-server setup that carried a <strong>10x traffic increase</strong>.</li>
+          <li><strong>Scaled it</strong>: a non-cluster Redis design that cut ElastiCache spend substantially, and a sticky-session multi-server setup that carried a <strong>10x traffic increase</strong>.</li>
           <li><strong>Made contest joining survive failure</strong>: retries, failover APIs and reconciliation jobs that recover stuck joins instead of leaving them to support.</li>
         </ul>
         <p class="stack">Java · Vert.x · Redis · AWS</p>
@@ -504,7 +502,7 @@ section{ padding-block:clamp(2.25rem,5vw,3.5rem); border-top:1px solid var(--bor
       </div>
       <div class="entry-body">
         <h3>Software Engineer Intern</h3>
-        <p>Built the <strong>project-management APIs</strong> for a product used by thousands of engineering teams, and put <strong>Google BigQuery</strong> under the analytics pipeline that ingests test metrics and SDK events. Also made it hold up — Elasticsearch query optimisation, socket-timeout retries, and usage fencing that enforces subscription tiers at request time.</p>
+        <p>Built the <strong>project-management APIs</strong> for a product used by thousands of engineering teams, and put <strong>Google BigQuery</strong> under the analytics pipeline that ingests test metrics and SDK events. Also made it hold up: Elasticsearch query optimisation, socket-timeout retries, and usage fencing that enforces subscription tiers at request time.</p>
         <p class="stack">Elasticsearch · BigQuery · REST APIs</p>
       </div>
     </article>
@@ -527,7 +525,7 @@ section{ padding-block:clamp(2.25rem,5vw,3.5rem); border-top:1px solid var(--bor
   <section id="agents" aria-labelledby="agents-h">
     <div class="sec-head">
       <h2 id="agents-h">Agents in production</h2>
-      <p class="sec-note">I've built with LLMs daily since 2024 — not as autocomplete, but as systems with failure modes, trust boundaries and evals.</p>
+      <p class="sec-note">I've been building with LLMs since 2024. Two systems from that work run in production.</p>
     </div>
 
     <article class="entry entry--lead">
@@ -537,8 +535,8 @@ section{ padding-block:clamp(2.25rem,5vw,3.5rem); border-top:1px solid var(--bor
       </div>
       <div class="entry-body">
         <h3>An agent that reviews every deploy</h3>
-        <p>Every production release at slice gets read by an LLM agent before anyone trusts it. Mad-Eye pulls the metrics, the logs and the code diff for a deployment, reasons about whether the change is doing what it claimed it would, and says so in Slack.</p>
-        <p>The hard part was never the prompt. This agent holds production credentials and reads production logs — text that users, and therefore attackers, can influence. So the trust boundaries matter as much as the reasoning: what it may act on, what it may only report, and where an injected instruction has to stop.</p>
+        <p>Every production release at slice is reviewed by an LLM agent. Mad-Eye pulls the metrics, the logs and the code diff for a deployment, reasons about whether the change is doing what it claimed it would, and says so in Slack.</p>
+        <p>Most of the design work went into trust boundaries rather than prompts. The agent holds production credentials and reads production logs, which is text that users, and therefore attackers, can influence. So it is explicit about what the agent may act on, what it may only report, and where an injected instruction stops.</p>
         <p class="stack">Python · FastAPI · Temporal · Claude on AWS Bedrock · Langfuse</p>
       </div>
     </article>
@@ -550,7 +548,7 @@ section{ padding-block:clamp(2.25rem,5vw,3.5rem); border-top:1px solid var(--bor
       </div>
       <div class="entry-body">
         <h3>The AI workflow my team ships through</h3>
-        <p>A task orchestrator that fans work out to explorer, planner and reviewer subagents over an in-repo knowledge base, with eval suites so a change to a prompt gets measured instead of argued about. The part people reach for most is the observability skills — an MCP-backed path from "there's an alert" to a live investigation with the dashboards already pulled.</p>
+        <p>A task orchestrator that fans work out to explorer, planner and reviewer subagents over an in-repo knowledge base, with eval suites so prompt changes get measured. The part people reach for most is the observability skills: an MCP-backed path from an alert to a live investigation with the dashboards already pulled.</p>
         <p class="stack">Claude Code · MCP · subagent orchestration · evals · hooks</p>
       </div>
     </article>
@@ -560,7 +558,7 @@ section{ padding-block:clamp(2.25rem,5vw,3.5rem); border-top:1px solid var(--bor
   <section id="projects" aria-labelledby="projects-h">
     <div class="sec-head">
       <h2 id="projects-h">Things I've built</h2>
-      <p class="sec-note">Two I'm building on my own time — product, architecture, code and ship, solo.</p>
+      <p class="sec-note">Two side projects. I do the product, the architecture and the code.</p>
     </div>
 
     <article class="entry">
@@ -571,7 +569,7 @@ section{ padding-block:clamp(2.25rem,5vw,3.5rem); border-top:1px solid var(--bor
       </div>
       <div class="entry-body">
         <h3>A Godot 4 Android companion app</h3>
-        <p>Care for a 2D Bal Krishna — wake him, bathe him, dress him, feed him, tuck him in. Built for adult devotees rather than children. A manifest-driven cutout character assembled at runtime, a headless-tested time and save simulation with versioned migrations, and a JSON content pipeline validated against schema. Vertical slice done; the daily loop is next.</p>
+        <p>Care for a 2D Bal Krishna: wake him, bathe him, dress him, feed him, tuck him in. Built for adult devotees rather than children. A manifest-driven cutout character assembled at runtime, a headless-tested time and save simulation with versioned migrations, and a JSON content pipeline validated against schema. Vertical slice done; the daily loop is next.</p>
         <p class="stack">Godot 4 · GDScript · Android · Python tooling</p>
       </div>
     </article>
@@ -600,7 +598,7 @@ section{ padding-block:clamp(2.25rem,5vw,3.5rem); border-top:1px solid var(--bor
           <a href="https://github.com/underoot-iota/movie_recommendation_system_with_knowledge_graph" rel="noopener">movie recommender built on a knowledge graph</a>, an
           <a href="https://github.com/underoot-iota/TOMS_SE_Project" rel="noopener">IoT hygiene-monitoring app</a> in Flutter,
           <a href="https://sparsh2024.vercel.app" rel="noopener">my college fest's site</a>, and marketing sites for a
-          couple of real businesses. Useful groundwork — not what I do now.</p>
+          couple of real businesses. Useful groundwork, not what I do now.</p>
       </div>
     </article>
   </section>
@@ -609,13 +607,13 @@ section{ padding-block:clamp(2.25rem,5vw,3.5rem); border-top:1px solid var(--bor
   <section id="background" aria-labelledby="background-h">
     <div class="sec-head">
       <h2 id="background-h">Background</h2>
-      <p class="sec-note">Where the engineering came from, and what happens when I'm not writing services.</p>
+      <p class="sec-note">Education, competitive programming, and everything else.</p>
     </div>
 
     <div class="grid-3">
       <div>
         <h3>IIIT Allahabad</h3>
-        <p>B.Tech, Information Technology, <time datetime="2020">2020</time>–<time datetime="2024">2024</time>. CGPA 8.11. Before engineering I ran design — Head of Design for two college fests, and a UX designer at Tailster. It's why I still care what an API feels like to use.</p>
+        <p>B.Tech, Information Technology, <time datetime="2020">2020</time>–<time datetime="2024">2024</time>. CGPA 8.11. Before engineering I ran design: Head of Design for two college fests, and a UX designer at Tailster. It's why I still care what an API feels like to use.</p>
       </div>
       <div>
         <h3>Competitive programming</h3>
@@ -625,7 +623,7 @@ section{ padding-block:clamp(2.25rem,5vw,3.5rem); border-top:1px solid var(--bor
       </div>
       <div>
         <h3>Away from the keyboard</h3>
-        <p>I draw in Photoshop. I like games that trust you to be confused for a while — <em>Outer Wilds</em>, <em>Disco Elysium</em>, <em>Celeste</em>, <em>Elden Ring</em> — and anime with the same patience: <em>Vinland Saga</em>, <em>Mushishi</em>, <em>Monster</em>, <em>Frieren</em>. Most of my side projects start as something I wanted to exist and couldn't find.</p>
+        <p>I draw in Photoshop. I like games that trust you to be confused for a while: <em>Outer Wilds</em>, <em>Disco Elysium</em>, <em>Celeste</em>, <em>Elden Ring</em>. And anime with the same patience: <em>Vinland Saga</em>, <em>Mushishi</em>, <em>Monster</em>, <em>Frieren</em>.</p>
       </div>
     </div>
   </section>
@@ -640,8 +638,8 @@ section{ padding-block:clamp(2.25rem,5vw,3.5rem); border-top:1px solid var(--bor
         <span class="mono">Open to work</span>
       </div>
       <div class="entry-body">
-        <p class="contact-lede">Backend, distributed systems and applied-AI roles — remote, or abroad.</p>
-        <p>If you're hiring for payments, infrastructure or agent systems — or you just want to argue about whether advisory locks were the right call — email is the fastest way to reach me.</p>
+        <p class="contact-lede">Backend, distributed systems and applied-AI roles, remote or abroad.</p>
+        <p>If you're hiring for payments, infrastructure or agent systems, email is the fastest way to reach me.</p>
         <p class="links-row">
           <a href="mailto:shantanuchaudhary95@gmail.com">shantanuchaudhary95@gmail.com</a>
           <a href="https://github.com/underoot-iota" rel="me noopener">GitHub</a>
