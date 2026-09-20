@@ -4,8 +4,8 @@
   "description": "Backend engineer — payments infrastructure and distributed systems.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#f7f4ee",
-  "theme_color": "#f7f4ee",
+  "background_color": "#fbfcfd",
+  "theme_color": "#fbfcfd",
   "icons": [
     { "src": "icon-192.png", "type": "image/png", "sizes": "192x192" },
     { "src": "icon-512.png", "type": "image/png", "sizes": "512x512" },

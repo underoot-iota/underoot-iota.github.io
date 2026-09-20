@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="SC">
   <style>
-    .bg { fill: #8e4327; }
-    .fg { fill: #f7f4ee; }
+    .bg { fill: #b13131; }
+    .fg { fill: #fbfcfd; }
     @media (prefers-color-scheme: dark) {
-      .bg { fill: #e0a07f; }
-      .fg { fill: #14120f; }
+      .bg { fill: #d96b6b; }
+      .fg { fill: #17191d; }
     }
   </style>
   <rect class="bg" width="64" height="64" rx="14"/>

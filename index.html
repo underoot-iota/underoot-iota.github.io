@@ -1,15 +1,14 @@
 <!doctype html>
-<html lang="en" class="no-js">
+<html lang="en" data-theme="system">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light dark">
 <script>
-/* Runs before first paint so a stored theme never flashes the wrong one.
-   Inline and render-blocking on purpose — this is the one case where that is right. */
+/* Before first paint, so a stored theme never flashes the wrong one.
+   Inline and render-blocking on purpose — this is the one case where that's right. */
 (function(){try{var t=localStorage.getItem('theme');
-document.documentElement.dataset.theme=(t==='light'||t==='dark')?t:'system';}
-catch(e){document.documentElement.dataset.theme='system';}})();
+if(t==='light'||t==='dark')document.documentElement.dataset.theme=t;}catch(e){}})();
 </script>
 
 <title>Shantanu Chaudhary — Backend Engineer, Payments &amp; Distributed Systems</title>
@@ -34,13 +33,11 @@ catch(e){document.documentElement.dataset.theme='system';}})();
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="manifest" href="manifest.webmanifest">
-<meta name="theme-color" content="#f7f4ee" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#14120f" media="(prefers-color-scheme: dark)">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;display=swap" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;display=swap"></noscript>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap"></noscript>
 
 <script type="application/ld+json">
 {
@@ -112,46 +109,35 @@ catch(e){document.documentElement.dataset.theme='system';}})();
 </script>
 
 <style>
+/* ---------------------------------------------------------------------------
+   Cool near-neutral field, one warm accent. Text is grey; the accent belongs
+   to links and focus only. Structure comes from 1px rules and the type scale,
+   never from tint or shadow.
+   --------------------------------------------------------------------------- */
 :root{
   color-scheme: light dark;
 
-  --paper:      light-dark(#f7f4ee, #14120f);
-  --paper-2:    light-dark(#efeae0, #1b1815);
-  --card:       light-dark(#fffdf8, #1e1a16);
-  --ink:        light-dark(#16130f, #ede6da);
-  --ink-mid:    light-dark(#4a443b, #b5ac9d);
-  --ink-soft:   light-dark(#6d6559, #8d857a);
-  --rule:       light-dark(#e2dace, #302a24);
-  --shadow:     light-dark(rgba(60,48,30,.07), rgba(0,0,0,.4));
-  --shadow-lift:light-dark(rgba(60,48,30,.13), rgba(0,0,0,.55));
+  --bg:         light-dark(oklch(0.990 0.002 250), oklch(0.170 0.008 250));
+  --bg-subtle:  light-dark(oklch(0.972 0.004 250), oklch(0.212 0.010 250));
+  --border:     light-dark(oklch(0.910 0.007 250), oklch(0.290 0.012 250));
+  --border-hi:  light-dark(oklch(0.840 0.010 250), oklch(0.380 0.014 250));
 
-  --ink-card:   light-dark(#1c1917, #0e0c0a);
-  --indigo:     light-dark(#3a4a7a, #34406a);
-  --clay:       light-dark(#8e4327, #8b4127);
-  --moss:       light-dark(#3f5d45, #37503c);
-  --rose:       light-dark(#f0d9dc, #3a2a2d);
-  --sky:        light-dark(#d9e3ef, #232c38);
-  --on-dark:    #f7f4ee;
+  --text:       light-dark(oklch(0.235 0.013 250), oklch(0.955 0.004 250));
+  --text-mid:   light-dark(oklch(0.400 0.013 250), oklch(0.800 0.009 250));
+  --text-mute:  light-dark(oklch(0.520 0.013 250), oklch(0.660 0.011 250));
 
-  /* Accent, not black, is the primary action colour. */
-  --accent:      light-dark(#8e4327, #e59a70);
-  --accent-deep: light-dark(#73351e, #f0b492);
-  --on-accent:   light-dark(#faf7f2, #1c110a);
+  --accent:     light-dark(oklch(0.510 0.165 25), oklch(0.760 0.120 32));
+  --accent-hi:  light-dark(oklch(0.430 0.175 25), oklch(0.840 0.095 34));
+  --on-accent:  light-dark(oklch(0.990 0.002 250), oklch(0.170 0.020 30));
 
-  --focus:      light-dark(#8e4327, #e0a07f);
+  --sans: "Schibsted Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
-  --serif: "Instrument Serif", Georgia, "Times New Roman", Times, serif;
-  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, "Helvetica Neue", Arial, sans-serif;
-  --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
-
-  --gap: clamp(.75rem, 1.4vw, 1.15rem);
-  --radius: 14px;
-  --maxw: 1120px;
+  --r: 6px;
+  --maxw: 1080px;
+  --col: 172px;   /* the fixed left column of every entry row */
 }
 
-/* Manual theme override. Because every token is a light-dark() pair, flipping
-   color-scheme is the whole implementation — no second palette to maintain.
-   No attribute (or "system") falls through to the OS preference. */
 :root[data-theme="light"]{ color-scheme: light; }
 :root[data-theme="dark"]{ color-scheme: dark; }
 
@@ -161,398 +147,237 @@ html{ -webkit-text-size-adjust:100%; scroll-behavior:smooth; }
 
 body{
   margin:0;
-  background-color: var(--paper);
-  color: var(--ink);
-  font-family: var(--sans);
-  font-size: 16px;
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-  overflow-x: hidden;
-}
-
-/* subtle paper grain — decorative, never blocks interaction */
-body::before{
-  content:"";
-  position:fixed; inset:0; z-index:0; pointer-events:none;
-  opacity: light-dark(.30, .18);
-  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='160' height='160' filter='url(%23n)' opacity='.45'/></svg>");
-  mix-blend-mode: light-dark(multiply, overlay);
+  background-color:var(--bg);
+  color:var(--text);
+  font-family:var(--sans);
+  font-size:16px; line-height:1.62;
+  font-variant-numeric:tabular-nums;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
 }
 
 img{ max-width:100%; height:auto; display:block; }
-a{ color:inherit; }
 
-:focus-visible{
-  outline:3px solid var(--focus);
-  outline-offset:3px;
-  border-radius:3px;
+/* ---------- links: persistent underlines, muted rule, accent on hover ------ */
+a{
+  color:inherit;
+  text-decoration:underline;
+  text-decoration-thickness:0.08em;
+  text-underline-offset:0.18em;
+  text-decoration-color:var(--border-hi);
+  text-decoration-skip-ink:auto;
+  transition:color 120ms ease, text-decoration-color 120ms ease;
 }
+a:hover{ color:var(--accent); text-decoration-color:var(--accent); }
+
+:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; border-radius:2px; }
 :focus:not(:focus-visible){ outline:none; }
-a,button,[id]{ scroll-margin-top:5rem; }
+a,button,[id]{ scroll-margin-top:4.5rem; }
 
 .sr-only{
   position:absolute; width:1px; height:1px; padding:0; margin:-1px;
   overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0;
 }
-
 .skip-link{
-  position:absolute; left:.75rem; top:.75rem; z-index:999;
+  position:absolute; left:.75rem; top:.75rem; z-index:99;
   transform:translateY(-200%);
-  background:var(--ink); color:var(--paper);
-  padding:.7rem 1.1rem; border-radius:8px;
-  font:500 .85rem/1 var(--sans); text-decoration:none;
-  transition:transform .16s ease;
+  background:var(--text); color:var(--bg);
+  padding:.65rem 1rem; border-radius:var(--r);
+  font-size:.85rem; text-decoration:none;
+  transition:transform .15s ease;
 }
 .skip-link:focus{ transform:translateY(0); }
 
-.wrap{
-  position:relative; z-index:1;
-  max-width:var(--maxw);
-  margin-inline:auto;
-  padding-inline:clamp(1rem, 3.5vw, 2rem);
+.wrap{ max-width:var(--maxw); margin-inline:auto; padding-inline:clamp(1.15rem,4vw,2.25rem); }
+
+/* ---------- type scale ---------- */
+h1{
+  font-size:clamp(2.3rem,5.4vw,3.75rem);
+  line-height:1.02; letter-spacing:-.028em; font-weight:500;
+  margin:0 0 1.15rem; max-width:17ch;
+}
+h2{
+  font-size:clamp(1.3rem,2.4vw,1.65rem);
+  line-height:1.2; letter-spacing:-.018em; font-weight:600;
+  margin:0;
+}
+h3{ font-size:1.02rem; line-height:1.4; font-weight:600; margin:0; letter-spacing:-.005em; }
+p{ margin:0 0 1rem; }
+p:last-child{ margin-bottom:0; }
+strong{ font-weight:600; color:var(--text); }
+
+.mono{
+  font-family:var(--mono); font-size:.79rem; font-weight:400;
+  letter-spacing:0; color:var(--text-mute);
 }
 
 /* ---------- header ---------- */
 .site-head{
   display:flex; align-items:center; justify-content:space-between;
-  gap:1rem; flex-wrap:wrap;
-  padding-block: clamp(1.25rem, 3vw, 2rem) .5rem;
+  gap:.9rem 1rem; flex-wrap:wrap;
+  padding-block:1.4rem 1.3rem;
+  border-bottom:1px solid var(--border);
 }
-.mark{
-  font-family:var(--mono); font-size:.76rem; letter-spacing:.14em;
-  text-transform:uppercase; color:var(--ink-mid); text-decoration:none;
-}
-.mark b{ color:var(--ink); font-weight:600; }
+.mark{ font-weight:600; font-size:.95rem; text-decoration:none; letter-spacing:-.01em; }
+.mark:hover{ color:var(--accent); }
+/* nowrap keeps the toggle beside the nav instead of dropping it to a line of
+   its own on narrow screens; the nav's own items still wrap freely. */
+.head-right{ display:flex; align-items:center; gap:clamp(.9rem,2.2vw,1.6rem); flex-wrap:nowrap; }
 .site-nav{ display:flex; gap:clamp(.7rem,2vw,1.4rem); flex-wrap:wrap; }
 .site-nav a{
-  font-family:var(--mono); font-size:.74rem; letter-spacing:.1em;
-  text-transform:uppercase; color:var(--ink-mid); text-decoration:none;
-  padding-block:.2rem; border-bottom:1px solid transparent;
-  transition:color .18s ease, border-color .18s ease;
+  font-size:.875rem; color:var(--text-mid); text-decoration:none;
+  border-bottom:1px solid transparent; padding-bottom:1px;
 }
-.site-nav a:hover{ color:var(--ink); border-bottom-color:var(--ink); }
-
-.head-right{ display:flex; align-items:center; gap:clamp(.8rem,2vw,1.5rem); flex-wrap:wrap; }
+.site-nav a:hover{ color:var(--accent); border-bottom-color:var(--accent); }
 
 .theme-toggle{
-  display:inline-flex; align-items:center; gap:.4rem;
-  font-family:var(--mono); font-size:.7rem; letter-spacing:.1em; text-transform:uppercase;
-  color:var(--ink-mid); background:var(--card);
-  border:1px solid var(--rule); border-radius:999px;
-  padding:.34rem .7rem .34rem .55rem; cursor:pointer;
-  transition:color .18s ease, border-color .18s ease, background .18s ease;
+  display:inline-flex; align-items:center; justify-content:center;
+  width:34px; height:34px; padding:0;
+  color:var(--text-mid); background:transparent;
+  border:1px solid var(--border); border-radius:var(--r);
+  cursor:pointer;
+  transition:color 120ms ease, border-color 120ms ease, background 120ms ease;
 }
-.theme-toggle:hover{ color:var(--ink); border-color:var(--ink-soft); }
-.theme-toggle .ic{
-  width:14px; height:14px; flex:none;
-  fill:none; stroke:currentColor; stroke-width:1.7;
-  stroke-linecap:round; stroke-linejoin:round;
-}
-/* show only the icon for the active state */
-.theme-toggle .ic{ display:none; }
-:root[data-theme="system"] .ic-system,
-:root:not([data-theme]) .ic-system,
-:root[data-theme="light"] .ic-light,
-:root[data-theme="dark"]  .ic-dark{ display:block; }
-
-/* ---------- hero ---------- */
-.hero{ padding-block: clamp(2rem, 6vw, 4rem) clamp(1.5rem,4vw,2.5rem); }
-.status{
-  display:inline-flex; align-items:center; gap:.5rem;
-  font-family:var(--mono); font-size:.72rem; letter-spacing:.1em; text-transform:uppercase;
-  color:var(--ink-mid); border:1px solid var(--rule); border-radius:999px;
-  padding:.35rem .75rem; background:var(--card);
-}
-.dot{
-  width:7px; height:7px; border-radius:50%; background:var(--moss);
-  animation:pulse 2.8s ease-out infinite;
-}
-@keyframes pulse{
-  0%{ box-shadow:0 0 0 0 color-mix(in srgb, var(--moss) 55%, transparent); }
-  70%{ box-shadow:0 0 0 7px color-mix(in srgb, var(--moss) 0%, transparent); }
-  100%{ box-shadow:0 0 0 0 color-mix(in srgb, var(--moss) 0%, transparent); }
+.theme-toggle:hover{ color:var(--accent); border-color:var(--border-hi); background:var(--bg-subtle); }
+.theme-toggle svg{ width:16px; height:16px; fill:none; stroke:currentColor; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; }
+.theme-toggle .ic-dark{ display:none; }
+/* show the icon for the theme you'd switch TO */
+:root[data-theme="dark"] .theme-toggle .ic-light{ display:none; }
+:root[data-theme="dark"] .theme-toggle .ic-dark{ display:block; }
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]) .theme-toggle .ic-light{ display:none; }
+  :root:not([data-theme="light"]) .theme-toggle .ic-dark{ display:block; }
 }
 
-h1{
-  font-family:var(--serif); font-weight:400;
-  font-size:clamp(2.7rem, 8.5vw, 5.4rem);
-  line-height:1.02; letter-spacing:-.015em;
-  margin:.7em 0 .28em; max-width:15ch;
-}
-h1 .em{ font-style:italic; }
-
-.lede{
-  font-family:var(--serif);
-  font-size:clamp(1.22rem, 2.5vw, 1.72rem);
-  line-height:1.42; color:var(--ink); margin:0 0 1.5rem; max-width:44ch;
-}
-.lede-sub{
-  font-size:1rem; line-height:1.68; color:var(--ink-mid);
-  max-width:62ch; margin:0 0 1.75rem;
-}
-.lede-sub strong{ color:var(--ink); font-weight:600; }
-
-.cta{ display:flex; flex-wrap:wrap; gap:.6rem; }
-.btn{
-  display:inline-flex; align-items:center; gap:.45rem;
-  font-family:var(--mono); font-size:.78rem; letter-spacing:.04em;
-  text-decoration:none; padding:.62rem 1.05rem; border-radius:999px;
-  border:1px solid var(--ink-soft); background:var(--card); color:var(--ink);
-  transition:background .18s ease, border-color .18s ease, color .18s ease;
-}
-.btn:hover{ background:var(--ink); color:var(--paper); border-color:var(--ink); }
-/* outbound links say so */
-.btn[href^="http"]::after{
-  content:"↗"; font-size:.95em; line-height:1; margin-left:.15rem; opacity:.65;
-}
-.btn:hover[href^="http"]::after{ opacity:1; }
-.btn--solid{ background:var(--accent); color:var(--on-accent); border-color:var(--accent); }
-.btn--solid:hover{ background:var(--accent-deep); border-color:var(--accent-deep); color:var(--on-accent); }
-.btn svg{ width:13px; height:13px; flex:none; }
-
-/* ---------- facts ---------- */
-.facts{
-  display:grid; grid-template-columns:repeat(auto-fit,minmax(168px,1fr));
-  gap:var(--gap) clamp(1rem,3vw,2rem);
-  margin:clamp(2rem,5vw,3rem) 0 0;
-  padding-top:clamp(1.5rem,3vw,2rem); border-top:1px solid var(--rule);
-}
-.facts > div{ min-width:0; }
-.facts dt{
-  font-family:var(--mono); font-size:.68rem; letter-spacing:.13em;
-  text-transform:uppercase; color:var(--ink-soft); margin-bottom:.35rem;
-}
-.facts dd{ margin:0; font-size:.93rem; line-height:1.5; color:var(--ink); }
-
-/* At desktop width the hero becomes two columns: prose left, facts card right.
-   DOM order is unchanged — the grid only moves things visually, so screen readers
-   and crawlers still read hero → facts → bio in the authored order. */
-@media (min-width:1040px){
+/* ---------- hero: asymmetric, no badge, no centring ---------- */
+.hero{ padding-block:clamp(3rem,7vw,5rem) clamp(2rem,4vw,3rem); }
+@media (min-width:900px){
   .hero{
     display:grid;
-    grid-template-columns:minmax(0,1.12fr) minmax(300px,.88fr);
-    column-gap:clamp(2rem,4.5vw,3.75rem);
+    grid-template-columns:minmax(0,1fr) clamp(200px,20vw,248px);
+    column-gap:clamp(2rem,5vw,4rem);
     align-items:start;
   }
-  .hero-main{ grid-column:1; grid-row:1; }
-  .facts{
-    grid-column:2; grid-row:1;
-    margin-top:.55rem; padding:1.5rem 1.6rem;
-    border-top:0; border:1px solid var(--rule);
-    background:var(--card); border-radius:var(--radius);
-    grid-template-columns:1fr; gap:1.15rem;
-    box-shadow:0 1px 2px var(--shadow);
-  }
-  .bio-short{ grid-column:1 / -1; grid-row:2; max-width:none; }
 }
+.lede{
+  font-size:clamp(1.05rem,1.8vw,1.22rem); line-height:1.5;
+  color:var(--text); max-width:52ch; margin:0 0 1.15rem;
+}
+.hero-body{ color:var(--text-mid); max-width:60ch; margin:0 0 1.6rem; }
+.hero-body strong{ color:var(--text); }
 
-.bio-short{
-  margin-top:clamp(1.75rem,4vw,2.5rem);
+.links-row{ display:flex; flex-wrap:wrap; gap:0 1.5rem; font-size:.95rem; }
+.links-row a{ text-decoration-color:var(--accent); }
+.links-row a::after{ content:" ↗"; font-size:.85em; color:var(--text-mute); }
+.links-row a[href^="mailto"]::after{ content:none; }
+
+/* facts column — a plain list against a rule, not a card */
+.facts{ margin:0; padding:0; }
+@media (min-width:900px){
+  .facts{ border-left:1px solid var(--border); padding-left:1.4rem; }
+}
+@media (max-width:899px){
+  .facts{ margin-top:2.5rem; padding-top:1.5rem; border-top:1px solid var(--border); }
+}
+.facts > div + div{ margin-top:1rem; }
+.facts dt{
+  font-family:var(--mono); font-size:.72rem; color:var(--text-mute);
+  margin-bottom:.15rem;
+}
+.facts dd{ margin:0; font-size:.88rem; line-height:1.45; color:var(--text); }
+
+/* ---------- the short third-person bio ---------- */
+.bio{
+  background:var(--bg-subtle);
+  border:1px solid var(--border); border-radius:var(--r);
   padding:clamp(1.1rem,2.4vw,1.5rem);
-  background:var(--paper-2);
-  border:1px solid var(--rule);
-  border-radius:var(--radius);
-  max-width:74ch;
+  margin-bottom:clamp(2rem,5vw,3.5rem);
 }
-.bio-short .label{ margin-bottom:.6rem; }
-.bio-short p:last-child{
-  margin:0; font-size:.94rem; line-height:1.68; color:var(--ink-mid);
-}
+.bio p{ font-size:.94rem; line-height:1.66; color:var(--text-mid); max-width:80ch; }
+.bio p strong{ color:var(--text); }
+.bio .mono{ display:block; margin-bottom:.55rem; }
 
-/* ---------- sections + bento ---------- */
-section{ padding-block: clamp(2.5rem, 6vw, 4.25rem); }
-/* Heading left, note right. Baseline alignment pinned the note's FIRST line to
-   the big heading's baseline, so a two-line note hung awkwardly below it.
-   Aligning the bottoms instead reads as one block. */
-.sec-head{
-  display:grid; gap:.55rem;
-  margin-bottom:clamp(1.25rem,3vw,1.9rem);
-}
+/* ---------- sections: document rows, not a card grid ---------- */
+section{ padding-block:clamp(2.25rem,5vw,3.5rem); border-top:1px solid var(--border); }
+.sec-head{ display:grid; gap:.4rem; margin-bottom:clamp(1.5rem,3.5vw,2.25rem); }
 @media (min-width:780px){
   .sec-head{
-    grid-template-columns:auto minmax(0,44ch);
-    justify-content:space-between;
-    align-items:end;
+    grid-template-columns:auto minmax(0,46ch);
+    justify-content:space-between; align-items:baseline;
     column-gap:clamp(1.5rem,4vw,3rem);
   }
-  .sec-note{ padding-bottom:.45rem; }
 }
-h2{
-  font-family:var(--serif); font-weight:400;
-  font-size:clamp(1.8rem,4.2vw,2.7rem); line-height:1.1;
-  letter-spacing:-.01em; margin:0;
-}
-.sec-note{
-  font-size:.9rem; color:var(--ink-mid); margin:0; max-width:46ch;
-}
+.sec-note{ font-size:.9rem; color:var(--text-mute); margin:0; }
 
-.bento{
-  list-style:none; margin:0; padding:0;
-  display:grid; grid-template-columns:repeat(12,1fr); gap:var(--gap);
+/* one entry = a fixed meta column + the prose. This is the whole layout. */
+.entry{
+  display:grid; gap:.5rem;
+  padding-block:clamp(1.6rem,3vw,2.1rem);
 }
-.bento > li{ min-width:0; }
-.s3{ grid-column:span 3; } .s4{ grid-column:span 4; }
-.s5{ grid-column:span 5; } .s6{ grid-column:span 6; }
-.s7{ grid-column:span 7; } .s8{ grid-column:span 8; }
-.s12{ grid-column:span 12; }
-@media (max-width:900px){
-  .s3,.s4,.s5{ grid-column:span 6; }
-  .s6,.s7,.s8{ grid-column:span 12; }
+.entry + .entry{ border-top:1px solid var(--border); }
+@media (min-width:780px){
+  .entry{
+    grid-template-columns:var(--col) minmax(0,1fr);
+    column-gap:clamp(1.75rem,4vw,3rem);
+  }
 }
-@media (max-width:560px){
-  .s3,.s4,.s5{ grid-column:span 12; }
-}
+.entry-meta{ display:flex; flex-direction:column; gap:.2rem; }
+.entry-meta .org{ font-weight:600; font-size:.95rem; color:var(--text); }
+/* flex gap rather than child margins: a child rule setting `margin:0` can't
+   collapse the rhythm, which is how the paragraphs in an entry ended up
+   touching. gap is not overridable from the child. */
+.entry-body{ display:flex; flex-direction:column; gap:.9rem; }
+.entry-body p{ color:var(--text-mid); max-width:72ch; }
+.entry-body p strong{ color:var(--text); }
 
-.card{
-  position:relative; height:100%;
-  display:flex; flex-direction:column; gap:.6rem;
-  background:var(--card); border:1px solid var(--rule);
-  border-radius:var(--radius);
-  padding:clamp(1.1rem,2.4vw,1.6rem);
-  box-shadow:0 1px 2px var(--shadow);
-  transition:transform .22s cubic-bezier(.22,.7,.3,1), box-shadow .22s ease, border-color .22s ease;
-}
-.card:hover{ transform:translateY(-3px); box-shadow:0 10px 26px -12px var(--shadow-lift); }
-.card:has(.card-link:focus-visible){ outline:3px solid var(--focus); outline-offset:3px; }
+.bul{ margin:0; padding-left:1.1rem; color:var(--text-mid); max-width:74ch; }
+.bul li{ margin-bottom:.6rem; }
+.bul li:last-child{ margin-bottom:0; }
+.bul li::marker{ color:var(--text-mute); }
+.bul strong{ color:var(--text); }
 
-.label{
-  font-family:var(--mono); font-size:.66rem; letter-spacing:.15em;
-  text-transform:uppercase; color:var(--ink-soft);
-  display:flex; align-items:center; gap:.4rem; flex-wrap:wrap; margin:0;
-}
-.card h3{
-  font-family:var(--serif); font-weight:400;
-  font-size:clamp(1.3rem,2.6vw,1.75rem); line-height:1.16;
-  letter-spacing:-.005em; margin:0;
-}
-.card p{ margin:0; font-size:.93rem; line-height:1.62; color:var(--ink-mid); }
-.card .meta{
-  font-family:var(--mono); font-size:.72rem; color:var(--ink-soft);
-  letter-spacing:.03em; line-height:1.5;
-}
-.card ul.bul{
-  margin:.2rem 0 0; padding-left:1.05rem;
-  font-size:.91rem; line-height:1.6; color:var(--ink-mid);
-}
-.card ul.bul li{ margin-bottom:.55rem; }
-.card ul.bul li:last-child{ margin-bottom:0; }
-.card ul.bul strong, .card p strong{ color:var(--ink); font-weight:600; }
+/* mono is semantic here: dates, counts, repo names — not decoration */
+.stack{ font-family:var(--mono); font-size:.76rem; color:var(--text-mute); max-width:74ch; margin-top:.2rem; }
 
-/* inline links inside card prose */
-.card p a:not(.btn){
-  color:inherit; text-decoration:underline;
-  text-decoration-color:color-mix(in srgb, currentColor 40%, transparent);
-  text-underline-offset:3px; text-decoration-thickness:1px;
-  transition:text-decoration-color .18s ease;
-}
-.card p a:not(.btn):hover{ text-decoration-color:currentColor; }
+/* the one place a lead entry is allowed to dominate */
+.entry--lead .entry-body h3{ font-size:1.18rem; }
+.entry--lead .entry-body > p:first-of-type{ color:var(--text); font-size:1.02rem; }
 
-.card-link{ color:inherit; text-decoration:none; }
-.card-link::after{ content:""; position:absolute; inset:0; border-radius:var(--radius); }
-.card-link:hover{ text-decoration:underline; text-underline-offset:3px; }
+/* ---------- background: compact grid ---------- */
+.grid-3{ display:grid; gap:clamp(1.25rem,3vw,2rem); }
+@media (min-width:700px){ .grid-3{ grid-template-columns:repeat(3,1fr); } }
+.grid-3 p{ color:var(--text-mid); font-size:.92rem; }
+.grid-3 h3{ margin-bottom:.4rem; }
 
-.spacer{ flex:1 1 auto; min-height:.2rem; }
-
-.tags{
-  list-style:none; display:flex; flex-wrap:wrap; gap:.35rem;
-  margin:.25rem 0 0; padding:0;
-}
-.tags li{
-  font-family:var(--mono); font-size:.68rem; letter-spacing:.04em;
-  color:var(--ink-mid); border:1px solid var(--rule);
-  border-radius:999px; padding:.18rem .52rem; background:var(--paper-2);
-}
-
-/* Tinted variants rebind the text tokens locally instead of overriding each
-   element. Every rule downstream already reads --ink / --ink-mid / --ink-soft,
-   so they all follow automatically — no per-element overrides and no
-   specificity races (the previous version lost one: `.card ul.bul strong`
-   at (0,2,1) beat `.card--ink strong` at (0,1,1), which put near-black bold
-   text on the dark cards in light mode). */
-.card--ink,.card--indigo,.card--clay,.card--moss{
-  border-color:transparent;
-  color:var(--on-dark);
-  --ink:      var(--on-dark);
-  --ink-mid:  color-mix(in srgb, var(--on-dark) 92%, transparent);
-  --ink-soft: color-mix(in srgb, var(--on-dark) 84%, transparent);
-  --rule:     color-mix(in srgb, var(--on-dark) 26%, transparent);
-  --paper-2:  transparent;
-  --accent:   var(--on-dark);
-}
-.card--ink{ background:var(--ink-card); }
-.card--indigo{ background:var(--indigo); }
-.card--clay{ background:var(--clay); }
-.card--moss{ background:var(--moss); }
-
-.card--ink .btn,.card--indigo .btn,.card--clay .btn,.card--moss .btn{
-  background:transparent; color:var(--on-dark);
-  border-color:color-mix(in srgb, var(--on-dark) 38%, transparent);
-}
-.card--ink .btn:hover,.card--indigo .btn:hover,
-.card--clay .btn:hover,.card--moss .btn:hover{
-  border-color:var(--on-dark);
-  background:color-mix(in srgb, var(--on-dark) 10%, transparent);
-}
-
-.card--rose,.card--sky{
-  border-color:transparent;
-  --rule:    color-mix(in srgb, var(--ink) 18%, transparent);
-  --paper-2: transparent;
-}
-.card--rose{ background:var(--rose); }
-.card--sky{ background:var(--sky); }
-.card--quiet{ background:var(--paper-2); }
-
-.live{ color:var(--moss); font-weight:600; }
-.card--ink .live,.card--indigo .live,.card--clay .live,.card--moss .live{ color:inherit; }
-
-/* ---------- reveal ---------- */
-.reveal{ opacity:0; transform:translateY(14px); }
-.reveal.in{ opacity:1; transform:none; transition:opacity .55s ease, transform .55s cubic-bezier(.22,.7,.3,1); }
-.no-js .reveal{ opacity:1; transform:none; }
+/* ---------- contact ---------- */
+.contact-lede{ font-size:clamp(1.1rem,2.2vw,1.45rem); line-height:1.35; letter-spacing:-.015em; font-weight:500; max-width:26ch; margin:0 0 1rem; }
 
 /* ---------- footer ---------- */
 .site-foot{
-  border-top:1px solid var(--rule);
-  padding-block:clamp(2rem,4vw,3rem);
+  border-top:1px solid var(--border);
+  padding-block:2rem 2.5rem;
   display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap;
-  font-family:var(--mono); font-size:.73rem; letter-spacing:.06em;
-  color:var(--ink-soft);
+  font-size:.85rem; color:var(--text-mute);
 }
-.site-foot a{
-  color:var(--ink-mid);
-  text-decoration:underline; text-underline-offset:4px; text-decoration-thickness:1px;
-  text-decoration-color:color-mix(in srgb, currentColor 45%, transparent);
-  transition:color .18s ease, text-decoration-color .18s ease;
-}
-.site-foot a:hover{ color:var(--accent); text-decoration-color:currentColor; }
-.foot-links{ display:flex; gap:1rem; flex-wrap:wrap; }
+.foot-links{ display:flex; gap:1.25rem; flex-wrap:wrap; }
 
 @media (prefers-reduced-motion: reduce){
   html{ scroll-behavior:auto; }
-  *,*::before,*::after{
-    animation-duration:.01ms !important; animation-iteration-count:1 !important;
-    transition-duration:.01ms !important;
-  }
-  .reveal{ opacity:1; transform:none; }
+  *,*::before,*::after{ transition-duration:.01ms !important; animation-duration:.01ms !important; }
 }
-
 @media print{
-  body::before{ display:none; }
-  .card{ box-shadow:none; break-inside:avoid; border:1px solid #ccc; }
-  .site-nav,.cta,.skip-link{ display:none; }
+  .site-nav,.theme-toggle,.skip-link{ display:none; }
+  section,.entry + .entry{ break-inside:avoid; }
 }
 </style>
 </head>
 
 <body>
-<script>document.documentElement.classList.remove('no-js');</script>
 <a class="skip-link" href="#main">Skip to content</a>
 
 <div class="wrap">
   <header class="site-head">
-    <a class="mark" href="#main"><b>Shantanu Chaudhary</b> — Backend Engineer</a>
+    <a class="mark" href="#main">Shantanu Chaudhary</a>
     <div class="head-right">
       <nav class="site-nav" aria-label="Primary">
         <a href="#work">Work</a>
@@ -561,11 +386,9 @@ h2{
         <a href="#background">Background</a>
         <a href="#contact">Contact</a>
       </nav>
-      <button class="theme-toggle" type="button" id="theme-toggle" aria-label="Colour theme: follow system">
-        <svg class="ic ic-system" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5a8.5 8.5 0 0 0 0 17z" fill="currentColor" stroke="none"/></svg>
-        <svg class="ic ic-light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.6"/><path d="M12 2v2.4M12 19.6V22M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2 12h2.4M19.6 12H22M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7"/></svg>
-        <svg class="ic ic-dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.2A8.4 8.4 0 0 1 9.8 4 8.5 8.5 0 1 0 20 14.2z"/></svg>
-        <span class="theme-word">System</span>
+      <button class="theme-toggle" type="button" id="theme-toggle" aria-label="Switch to dark theme">
+        <svg class="ic-light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2.2v2.3M12 19.5v2.3M4.4 4.4l1.6 1.6M18 18l1.6 1.6M2.2 12h2.3M19.5 12h2.3M4.4 19.6 6 18M18 6l1.6-1.6"/></svg>
+        <svg class="ic-dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.2A8.4 8.4 0 0 1 9.8 4 8.5 8.5 0 1 0 20 14.2z"/></svg>
       </button>
     </div>
   </header>
@@ -574,305 +397,258 @@ h2{
 <main id="main" tabindex="-1">
 <div class="wrap">
 
-  <!-- ============ HERO ============ -->
+  <!-- ===================== HERO ===================== -->
   <div class="hero">
-   <div class="hero-main">
-    <span class="status"><span class="dot" aria-hidden="true"></span>Open to backend &amp; applied-AI roles</span>
+    <div>
+      <h1>I build the services that move money.</h1>
 
-    <h1>Backend engineer, <span class="em">payments</span> &amp; distributed systems.</h1>
+      <p class="lede">
+        Backend engineer working on payments infrastructure and distributed systems — and on the
+        agents that watch them run.
+      </p>
 
-    <p class="lede">I build the services that move money — and the agents that watch them.</p>
+      <p class="hero-body">
+        I'm a Software Development Engineer at <strong>slice</strong> in Bengaluru, where I own the
+        BBPS bill-payments backend: a Go service carrying <strong>1.7M+ transactions a month</strong>.
+        Before that I built <strong>DreamPlay's backend at Dream11</strong> from the ground up, as the
+        product went from zero to <strong>1.5M+ users in six months</strong>. I work in Go, Java and
+        Python across gRPC, Kafka, PostgreSQL and Redis on AWS and Kubernetes — and I build
+        production systems with LLM agents, including one that reviews every deploy before anyone
+        trusts it.
+      </p>
 
-    <p class="lede-sub">
-      I'm Shantanu Chaudhary, a Software Development Engineer at <strong>slice</strong> in
-      Bengaluru, where I own the BBPS bill-payments backend: a Go service handling
-      <strong>1.7M+ transactions a month</strong>. Before that I built
-      <strong>DreamPlay's backend at Dream11</strong> from the ground up, as the product grew from
-      zero to <strong>1.5M+ users in six months</strong>. I work in Go, Java and Python across
-      gRPC, Kafka, PostgreSQL and Redis on AWS and Kubernetes — and I build production systems
-      with LLM agents, including one that verifies every deploy before it's trusted.
-    </p>
-
-    <div class="cta">
-      <a class="btn btn--solid" href="mailto:shantanuchaudhary95@gmail.com">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 5h16v14H4z"/><path d="m4 6 8 6 8-6"/></svg>
-        Email me
-      </a>
-      <a class="btn" href="https://www.linkedin.com/in/underoot-iota/" rel="me noopener">LinkedIn</a>
-      <a class="btn" href="https://github.com/underoot-iota" rel="me noopener">GitHub</a>
-    </div>
-   </div>
-
-    <dl class="facts">
-      <div><dt>Role</dt><dd>Software Development Engineer, App Payments — slice</dd></div>
-      <div><dt>Location</dt><dd>Bengaluru, India · open to remote &amp; relocation</dd></div>
-      <div><dt>Focus</dt><dd>Payments infrastructure, distributed systems, applied AI</dd></div>
-      <div><dt>Core stack</dt><dd>Go, Java, Python, Kafka, PostgreSQL, Redis, AWS, Kubernetes</dd></div>
-      <div><dt>Previously</dt><dd>SDE 1, Dream11 (2024–2026) · Intern at BrowserStack &amp; Toplyne</dd></div>
-      <div><dt>Education</dt><dd>B.Tech, Information Technology — IIIT Allahabad, 2024</dd></div>
-    </dl>
-
-    <!-- Third-person summary. Deliberately self-contained: it restates the subject by name so it
-         survives being chunked by a search index or an AI retrieval system, and doubles as a bio
-         anyone can copy-paste. -->
-    <div class="bio-short">
-      <p class="label">Short bio — copy-paste ready</p>
-      <p>
-        Shantanu Chaudhary is a backend engineer based in Bengaluru, India, working on payments
-        infrastructure and distributed systems. He is a Software Development Engineer on the App
-        Payments pod at slice, where he owns the BBPS bill-payments backend — a Go service handling
-        over 1.7 million transactions a month. Before slice, Shantanu built the backend for
-        DreamPlay at Dream11, including its matchmaking and contest-join services, as the product
-        scaled from zero to over 1.5 million users in six months. He works in Go, Java and Python
-        across gRPC, Apache Kafka, PostgreSQL and Redis on AWS and Kubernetes, and builds
-        production systems with LLM agents. He holds a B.Tech in Information Technology from
-        IIIT Allahabad, and is open to backend, distributed-systems and applied-AI roles, remote
-        or abroad.
+      <p class="links-row">
+        <a href="mailto:shantanuchaudhary95@gmail.com">shantanuchaudhary95@gmail.com</a>
+        <a href="https://github.com/underoot-iota" rel="me noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/underoot-iota/" rel="me noopener">LinkedIn</a>
       </p>
     </div>
+
+    <dl class="facts">
+      <div><dt>Now</dt><dd>SDE, App Payments — slice</dd></div>
+      <div><dt>Previously</dt><dd>Dream11 · BrowserStack · Toplyne</dd></div>
+      <div><dt>Based in</dt><dd>Bengaluru, India</dd></div>
+      <div><dt>Open to</dt><dd>Backend, distributed systems and applied-AI roles — remote or abroad</dd></div>
+      <div><dt>Education</dt><dd>B.Tech IT, IIIT Allahabad, 2024</dd></div>
+    </dl>
   </div>
 
-  <!-- ============ WORK ============ -->
+  <!-- Third-person summary: self-contained so it survives being chunked by a
+       search index or an AI retrieval system, and usable as a copy-paste bio. -->
+  <div class="bio">
+    <span class="mono">Short bio</span>
+    <p>
+      <strong>Shantanu Chaudhary</strong> is a backend engineer based in Bengaluru, India, working on
+      payments infrastructure and distributed systems. He is a Software Development Engineer on the
+      App Payments pod at slice, where he owns the BBPS bill-payments backend — a Go service handling
+      over 1.7 million transactions a month. Before slice, Shantanu built the backend for DreamPlay
+      at Dream11, including its matchmaking and contest-join services, as the product scaled from
+      zero to over 1.5 million users in six months. He works in Go, Java and Python across gRPC,
+      Apache Kafka, PostgreSQL and Redis on AWS and Kubernetes, and builds production systems with
+      LLM agents. He holds a B.Tech in Information Technology from IIIT Allahabad, and is open to
+      backend, distributed-systems and applied-AI roles, remote or abroad.
+    </p>
+  </div>
+
+  <!-- ===================== WORK ===================== -->
   <section id="work" aria-labelledby="work-h">
     <div class="sec-head">
       <h2 id="work-h">Where I've worked</h2>
       <p class="sec-note">Production systems in fintech and real-money gaming. The code is confidential; the engineering isn't.</p>
     </div>
 
-    <ul class="bento" role="list">
+    <article class="entry entry--lead">
+      <div class="entry-meta">
+        <span class="org">slice</span>
+        <span class="mono"><time datetime="2026-02">Feb 2026</time> — present</span>
+        <span class="mono">Bengaluru</span>
+      </div>
+      <div class="entry-body">
+        <h3>Software Development Engineer, App Payments</h3>
+        <p><strong>I own the bill-payments backend</strong> — the Go service behind every BBPS bill in the app, carrying <strong>1.7M+ transactions a month</strong>. I design it, ship it and carry the pager for it, along with three other services on the payments path.</p>
+        <ul class="bul">
+          <li><strong>Built bill discovery over SMS</strong>, so the app finds your bills instead of asking you to type account numbers. It adds <strong>600+ bills a day</strong>. Bringing electricity, gas, prepaid and loan billers onto it meant parsing whatever each vendor calls a plan and normalising it into one model.</li>
+          <li><strong>Redesigned how billers work.</strong> A registry with capability overlays turned onboarding a biller from a change scattered across the codebase into a single file — and a CI gate keeps it that way.</li>
+          <li><strong>Made the money path correct under concurrency.</strong> Postgres advisory locks and read-then-write dedupe where account creation has to serialise, optimistic checks where contention is rare. A financial write happens once or not at all.</li>
+          <li><strong>Took the ceiling off the bill pipeline</strong> — indexed, time-windowed queries in place of full-table scans so batch jobs finish inside their window, and asynchronous offset commits to unblock Kafka consumer concurrency.</li>
+          <li><strong>Delivered the second-network path for a zero-forex Visa credit card</strong> in card issuance: a tenant-aware CCMS client, network-aware limits and a Kafka onboarding consumer.</li>
+        </ul>
+        <p class="stack">Go · gRPC · Kafka · PostgreSQL · Redis · AWS · Kubernetes · ArgoCD</p>
+      </div>
+    </article>
 
-      <li class="s8 reveal">
-        <article class="card card--ink">
-          <p class="label"><span>slice</span> · <span>Consumer fintech</span></p>
-          <h3>Software Development Engineer, App Payments</h3>
-          <p class="meta"><time datetime="2026-02">Feb 2026</time> — present · Bengaluru</p>
-          <p><strong>I own the bill-payments backend</strong> — the Go service behind every BBPS bill in the app, carrying <strong>1.7M+ transactions a month</strong>. I design it, ship it and carry the pager for it, along with three other services on the payments path.</p>
-          <ul class="bul">
-            <li><strong>Built bill discovery over SMS</strong>, so the app finds your bills instead of asking you to type account numbers. It adds <strong>600+ bills a day</strong>. Bringing electricity, gas, prepaid and loan billers onto it meant parsing whatever each vendor calls a plan and normalising it into one model.</li>
-            <li><strong>Redesigned how billers work.</strong> A registry with capability overlays turned onboarding a biller from a change scattered across the codebase into a single file — and a CI gate keeps it that way.</li>
-            <li><strong>Made the money path correct under concurrency.</strong> Postgres advisory locks and read-then-write dedupe where account creation has to serialise, optimistic checks where contention is rare. A financial write happens once or not at all.</li>
-            <li><strong>Took the ceiling off the bill pipeline</strong> — indexed, time-windowed queries in place of full-table scans so batch jobs finish inside their window, and asynchronous offset commits to unblock Kafka consumer concurrency.</li>
-            <li><strong>Delivered the second-network path for a zero-forex Visa credit card</strong> in card issuance: a tenant-aware CCMS client, network-aware limits and a Kafka onboarding consumer.</li>
-          </ul>
-          <div class="spacer"></div>
-          <ul class="tags" aria-label="Technologies used">
-            <li>Go</li><li>gRPC</li><li>Kafka</li><li>PostgreSQL</li><li>Redis</li><li>AWS</li><li>Kubernetes</li><li>ArgoCD</li>
-          </ul>
-        </article>
-      </li>
+    <article class="entry">
+      <div class="entry-meta">
+        <span class="org">Dream11</span>
+        <span class="mono"><time datetime="2024-10">Oct 2024</time> — <time datetime="2026-01">Jan 2026</time></span>
+        <span class="mono">Mumbai</span>
+      </div>
+      <div class="entry-body">
+        <h3>Software Development Engineer 1 — DreamPlay</h3>
+        <p><strong>I built DreamPlay's backend from the ground up</strong> — joining when it was an idea and staying through <strong>0 → 1.5M+ users in six months</strong>.</p>
+        <ul class="bul">
+          <li>The <strong>matchmaking and contest-join services</strong> in Java (Vert.x): the core loop of a real-money game, where a stuck join is someone's money in limbo.</li>
+          <li>A <strong>Glicko-based rating system</strong> so players met opponents at their level, plus IP-based fair-play filters, multi-device login prevention and a live liquidity indicator.</li>
+          <li><strong>Scaled it</strong> — a non-cluster Redis design that cut ElastiCache spend substantially, and a sticky-session multi-server setup that carried a <strong>10x traffic increase</strong>.</li>
+          <li><strong>Made contest joining survive failure</strong>: retries, failover APIs and reconciliation jobs that recover stuck joins instead of leaving them to support.</li>
+        </ul>
+        <p class="stack">Java · Vert.x · Redis · AWS</p>
+      </div>
+    </article>
 
-      <li class="s4 reveal">
-        <article class="card card--indigo">
-          <p class="label"><span>Dream11</span> · <span>Fantasy sports</span></p>
-          <h3>SDE 1 — DreamPlay</h3>
-          <p class="meta"><time datetime="2024-10">Oct 2024</time> — <time datetime="2026-01">Jan 2026</time> · Mumbai</p>
-          <p><strong>I built DreamPlay's backend from the ground up</strong> — joining when it was an idea and staying through <strong>0 → 1.5M+ users in six months</strong>.</p>
-          <ul class="bul">
-            <li>The <strong>matchmaking and contest-join services</strong> in Java (Vert.x): the core loop of a real-money game, where a stuck join is someone's money in limbo.</li>
-            <li>A <strong>Glicko-based rating system</strong> so players met opponents at their level, plus IP-based fair-play filters, multi-device login prevention and a live liquidity indicator.</li>
-            <li><strong>Scaled it</strong> — a non-cluster Redis design that cut ElastiCache spend substantially, and a sticky-session multi-server setup that carried a <strong>10x traffic increase</strong>.</li>
-            <li><strong>Made contest joining survive failure</strong>: retries, failover APIs and reconciliation jobs that recover stuck joins instead of leaving them to support.</li>
-          </ul>
-          <div class="spacer"></div>
-          <ul class="tags" aria-label="Technologies used">
-            <li>Java</li><li>Vert.x</li><li>Redis</li><li>AWS</li>
-          </ul>
-        </article>
-      </li>
+    <article class="entry">
+      <div class="entry-meta">
+        <span class="org">BrowserStack</span>
+        <span class="mono"><time datetime="2024-01">Jan 2024</time> — <time datetime="2024-07">Jul 2024</time></span>
+        <span class="mono">Remote</span>
+      </div>
+      <div class="entry-body">
+        <h3>Software Engineer Intern</h3>
+        <p>Built the <strong>project-management APIs</strong> for a product used by thousands of engineering teams, and put <strong>Google BigQuery</strong> under the analytics pipeline that ingests test metrics and SDK events. Also made it hold up — Elasticsearch query optimisation, socket-timeout retries, and usage fencing that enforces subscription tiers at request time.</p>
+        <p class="stack">Elasticsearch · BigQuery · REST APIs</p>
+      </div>
+    </article>
 
-      <li class="s6 reveal">
-        <article class="card">
-          <p class="label"><span>BrowserStack</span> · <span>Developer tooling</span></p>
-          <h3>Software Engineer Intern</h3>
-          <p class="meta"><time datetime="2024-01">Jan 2024</time> — <time datetime="2024-07">Jul 2024</time> · Remote</p>
-          <p>Built the <strong>project-management APIs</strong> for a product used by thousands of engineering teams, and put <strong>Google BigQuery</strong> under the analytics pipeline that ingests test metrics and SDK events. Also made it hold up — Elasticsearch query optimisation, socket-timeout retries, and usage fencing that enforces subscription tiers at request time.</p>
-          <div class="spacer"></div>
-          <ul class="tags" aria-label="Technologies used">
-            <li>Elasticsearch</li><li>BigQuery</li><li>REST APIs</li>
-          </ul>
-        </article>
-      </li>
-
-      <li class="s6 reveal">
-        <article class="card card--quiet">
-          <p class="label"><span>Toplyne</span> · <span>Go-to-market AI</span></p>
-          <h3>Software Engineer Intern</h3>
-          <p class="meta"><time datetime="2024-08">Aug 2024</time> — <time datetime="2024-10">Oct 2024</time> · Bengaluru</p>
-          <p>Backend and data-pipeline work on a product-led-growth platform, in the stretch between graduating and joining Dream11 full time.</p>
-          <div class="spacer"></div>
-          <ul class="tags" aria-label="Technologies used">
-            <li>Python</li><li>Data pipelines</li>
-          </ul>
-        </article>
-      </li>
-
-    </ul>
+    <article class="entry">
+      <div class="entry-meta">
+        <span class="org">Toplyne</span>
+        <span class="mono"><time datetime="2024-08">Aug 2024</time> — <time datetime="2024-10">Oct 2024</time></span>
+        <span class="mono">Bengaluru</span>
+      </div>
+      <div class="entry-body">
+        <h3>Software Engineer Intern</h3>
+        <p>Backend and data-pipeline work on a product-led-growth platform, in the stretch between graduating and joining Dream11 full time.</p>
+        <p class="stack">Python · Data pipelines</p>
+      </div>
+    </article>
   </section>
 
-  <!-- ============ AGENTS ============ -->
+  <!-- ===================== AGENTS ===================== -->
   <section id="agents" aria-labelledby="agents-h">
     <div class="sec-head">
       <h2 id="agents-h">Agents in production</h2>
       <p class="sec-note">I've built with LLMs daily since 2024 — not as autocomplete, but as systems with failure modes, trust boundaries and evals.</p>
     </div>
 
-    <ul class="bento" role="list">
+    <article class="entry entry--lead">
+      <div class="entry-meta">
+        <span class="org">Mad-Eye</span>
+        <span class="mono">shipped at slice</span>
+      </div>
+      <div class="entry-body">
+        <h3>An agent that reviews every deploy</h3>
+        <p>Every production release at slice gets read by an LLM agent before anyone trusts it. Mad-Eye pulls the metrics, the logs and the code diff for a deployment, reasons about whether the change is doing what it claimed it would, and says so in Slack.</p>
+        <p>The hard part was never the prompt. This agent holds production credentials and reads production logs — text that users, and therefore attackers, can influence. So the trust boundaries matter as much as the reasoning: what it may act on, what it may only report, and where an injected instruction has to stop.</p>
+        <p class="stack">Python · FastAPI · Temporal · Claude on AWS Bedrock · Langfuse</p>
+      </div>
+    </article>
 
-      <li class="s7 reveal">
-        <article class="card card--clay">
-          <p class="label">Applied AI · shipped at slice</p>
-          <h3>Mad-Eye — an agent that reviews every deploy</h3>
-          <p>Every production release at slice gets read by an LLM agent before anyone trusts it. Mad-Eye pulls the metrics, the logs and the code diff for a deployment, reasons about whether the change is doing what it claimed it would, and says so in Slack. Python and FastAPI, Temporal for durable execution, Claude on AWS Bedrock, Langfuse for tracing.</p>
-          <p>The hard part was never the prompt. This agent holds production credentials and reads production logs — text that users, and therefore attackers, can influence. So the trust boundaries matter as much as the reasoning: what it may act on, what it may only report, and where an injected instruction has to stop.</p>
-          <div class="spacer"></div>
-          <ul class="tags" aria-label="Technologies used">
-            <li>LLM agents</li><li>Python</li><li>FastAPI</li><li>Temporal</li><li>Claude</li><li>AWS Bedrock</li><li>Langfuse</li><li>Prompt-injection defence</li>
-          </ul>
-        </article>
-      </li>
-
-      <li class="s5 reveal">
-        <article class="card">
-          <p class="label">Developer platform · at slice</p>
-          <h3>The AI workflow my team ships through</h3>
-          <p>I built the harness we develop inside: a task orchestrator that fans work out to explorer, planner and reviewer subagents over an in-repo knowledge base, with eval suites so a change to a prompt gets measured instead of argued about.</p>
-          <p>The part people reach for most is the observability skills — an MCP-backed path from "there's an alert" to a live investigation with the dashboards already pulled.</p>
-          <div class="spacer"></div>
-          <ul class="tags" aria-label="Technologies used">
-            <li>Claude Code</li><li>MCP</li><li>Subagent orchestration</li><li>Evals</li><li>Hooks</li>
-          </ul>
-        </article>
-      </li>
-
-    </ul>
+    <article class="entry">
+      <div class="entry-meta">
+        <span class="org">Claude Code harness</span>
+        <span class="mono">built for my team</span>
+      </div>
+      <div class="entry-body">
+        <h3>The AI workflow my team ships through</h3>
+        <p>A task orchestrator that fans work out to explorer, planner and reviewer subagents over an in-repo knowledge base, with eval suites so a change to a prompt gets measured instead of argued about. The part people reach for most is the observability skills — an MCP-backed path from "there's an alert" to a live investigation with the dashboards already pulled.</p>
+        <p class="stack">Claude Code · MCP · subagent orchestration · evals · hooks</p>
+      </div>
+    </article>
   </section>
 
-  <!-- ============ PROJECTS ============ -->
+  <!-- ===================== PROJECTS ===================== -->
   <section id="projects" aria-labelledby="projects-h">
     <div class="sec-head">
       <h2 id="projects-h">Things I've built</h2>
       <p class="sec-note">Two I'm building on my own time — product, architecture, code and ship, solo.</p>
     </div>
 
-    <ul class="bento" role="list">
+    <article class="entry">
+      <div class="entry-meta">
+        <span class="org">Digital Kanha</span>
+        <span class="mono">in progress</span>
+        <span class="mono">private repo</span>
+      </div>
+      <div class="entry-body">
+        <h3>A Godot 4 Android companion app</h3>
+        <p>Care for a 2D Bal Krishna — wake him, bathe him, dress him, feed him, tuck him in. Built for adult devotees rather than children. A manifest-driven cutout character assembled at runtime, a headless-tested time and save simulation with versioned migrations, and a JSON content pipeline validated against schema. Vertical slice done; the daily loop is next.</p>
+        <p class="stack">Godot 4 · GDScript · Android · Python tooling</p>
+      </div>
+    </article>
 
-      <li class="s6 reveal">
-        <article class="card card--moss">
-          <p class="label">Mobile game · in progress</p>
-          <h3>Digital Kanha</h3>
-          <p>A Godot 4 Android companion app: care for a 2D Bal Krishna — wake him, bathe him, dress him, feed him, tuck him in. Built for adult devotees rather than children. A manifest-driven cutout character assembled at runtime, a headless-tested time and save simulation with versioned migrations, and a JSON content pipeline validated against schema.</p>
-          <p class="meta">Vertical slice done; daily-loop milestone next. Private repo while the art pipeline settles.</p>
-          <div class="spacer"></div>
-          <ul class="tags" aria-label="Technologies used">
-            <li>Godot 4</li><li>GDScript</li><li>Android</li><li>Python tooling</li>
-          </ul>
-        </article>
-      </li>
+    <article class="entry">
+      <div class="entry-meta">
+        <span class="org">Reel Reminder</span>
+        <span class="mono">MVP, paused</span>
+        <span class="mono">private repo</span>
+      </div>
+      <div class="entry-body">
+        <h3>One daily nudge for everything you saved</h3>
+        <p>Turns the pile of reels you'll never watch into a single daily reminder. Share any URL from any social app through the OS share sheet; it pulls metadata, suggests tags with an LLM, tracks unread → in progress → done, and sends one digest push a day. Works end to end on Android; paused while I make the native share-sheet patches durable.</p>
+        <p class="stack">React Native · Expo · Supabase — Postgres with RLS, Edge Functions, pg_cron</p>
+      </div>
+    </article>
 
-      <li class="s6 reveal">
-        <article class="card card--rose">
-          <p class="label">Mobile app · MVP, paused</p>
-          <h3>Reel Reminder</h3>
-          <p>Turns the pile of saved reels you'll never watch into one daily nudge. Share any URL from any social app through the OS share sheet; it pulls metadata, suggests tags with an LLM, tracks unread → in progress → done, and sends a single daily digest push.</p>
-          <p class="meta">React Native and Expo on Supabase — Postgres with RLS, Edge Functions, pg_cron. Works end to end on Android; paused while I make the native share-sheet patches durable.</p>
-          <div class="spacer"></div>
-          <ul class="tags" aria-label="Technologies used">
-            <li>React Native</li><li>Expo</li><li>Supabase</li><li>Zustand</li>
-          </ul>
-        </article>
-      </li>
-
-      <li class="s12 reveal">
-        <article class="card card--quiet">
-          <p class="label">Earlier</p>
-          <h3>Before the backend work</h3>
-          <p>
-            College and freelance projects, all public on GitHub: a
-            <a href="https://github.com/underoot-iota/sql_editor" rel="noopener">browser-based SQL editor</a>,
-            a <a href="https://github.com/underoot-iota/movie_recommendation_system_with_knowledge_graph" rel="noopener">movie recommender built on a knowledge graph</a>,
-            an <a href="https://github.com/underoot-iota/TOMS_SE_Project" rel="noopener">IoT hygiene-monitoring app</a> in Flutter,
-            <a href="https://sparsh2024.vercel.app" rel="noopener">my college fest's site</a>,
-            and marketing sites for a couple of real businesses. Useful groundwork — not what I do now.
-          </p>
-        </article>
-      </li>
-
-    </ul>
+    <article class="entry">
+      <div class="entry-meta">
+        <span class="org">Earlier</span>
+        <span class="mono">on GitHub</span>
+      </div>
+      <div class="entry-body">
+        <p>College and freelance projects: a
+          <a href="https://github.com/underoot-iota/sql_editor" rel="noopener">browser-based SQL editor</a>, a
+          <a href="https://github.com/underoot-iota/movie_recommendation_system_with_knowledge_graph" rel="noopener">movie recommender built on a knowledge graph</a>, an
+          <a href="https://github.com/underoot-iota/TOMS_SE_Project" rel="noopener">IoT hygiene-monitoring app</a> in Flutter,
+          <a href="https://sparsh2024.vercel.app" rel="noopener">my college fest's site</a>, and marketing sites for a
+          couple of real businesses. Useful groundwork — not what I do now.</p>
+      </div>
+    </article>
   </section>
 
-  <!-- ============ BACKGROUND ============ -->
+  <!-- ===================== BACKGROUND ===================== -->
   <section id="background" aria-labelledby="background-h">
     <div class="sec-head">
       <h2 id="background-h">Background</h2>
       <p class="sec-note">Where the engineering came from, and what happens when I'm not writing services.</p>
     </div>
 
-    <ul class="bento" role="list">
-
-      <li class="s5 reveal">
-        <article class="card">
-          <p class="label">Education</p>
-          <h3>IIIT Allahabad</h3>
-          <p><strong>B.Tech, Information Technology</strong>, <time datetime="2020">2020</time>–<time datetime="2024">2024</time>. CGPA 8.11.</p>
-          <p>Before engineering I ran design — Head of Design for two college fests, and a UX designer at Tailster. It's why I still care what an API feels like to use.</p>
-        </article>
-      </li>
-
-      <li class="s3 reveal">
-        <article class="card card--quiet">
-          <p class="label">Competitive programming</p>
-          <h3>Specialist &amp; Knight</h3>
-          <p>Codeforces <strong>1562</strong> (Specialist). LeetCode <strong>2010</strong> (Knight).</p>
-        </article>
-      </li>
-
-      <li class="s4 reveal">
-        <article class="card card--quiet">
-          <p class="label">Hackathons</p>
-          <h3>Wins</h3>
-          <p><strong>1st place</strong>, Unscript Rookies 2022. <strong>Top 10</strong>, Out of Context Design Hackathon. At SliceLab 3.0 the agent my team built went to production.</p>
-        </article>
-      </li>
-
-      <li class="s12 reveal">
-        <article class="card card--quiet">
-          <p class="label">Away from the keyboard</p>
-          <h3>Digital art, long games, slow anime</h3>
-          <p>
-            I draw in Photoshop. I like games that trust you to be confused for a while —
-            <em>Outer Wilds</em>, <em>Disco Elysium</em>, <em>Hades</em>, <em>Celeste</em>,
-            <em>Elden Ring</em> — and anime with the same patience: <em>Vinland Saga</em>,
-            <em>Mushishi</em>, <em>Monster</em>, <em>Berserk</em> (1997), <em>Frieren</em>,
-            <em>Cowboy Bebop</em>. Most of my side projects start as something I wanted to exist
-            and couldn't find.
-          </p>
-        </article>
-      </li>
-
-    </ul>
+    <div class="grid-3">
+      <div>
+        <h3>IIIT Allahabad</h3>
+        <p>B.Tech, Information Technology, <time datetime="2020">2020</time>–<time datetime="2024">2024</time>. CGPA 8.11. Before engineering I ran design — Head of Design for two college fests, and a UX designer at Tailster. It's why I still care what an API feels like to use.</p>
+      </div>
+      <div>
+        <h3>Competitive programming</h3>
+        <p>Codeforces 1562 (Specialist). LeetCode 2010 (Knight).</p>
+        <h3 style="margin-top:1.1rem">Hackathons</h3>
+        <p>1st place, Unscript Rookies 2022. Top 10, Out of Context Design Hackathon. At SliceLab 3.0 the agent my team built went to production.</p>
+      </div>
+      <div>
+        <h3>Away from the keyboard</h3>
+        <p>I draw in Photoshop. I like games that trust you to be confused for a while — <em>Outer Wilds</em>, <em>Disco Elysium</em>, <em>Celeste</em>, <em>Elden Ring</em> — and anime with the same patience: <em>Vinland Saga</em>, <em>Mushishi</em>, <em>Monster</em>, <em>Frieren</em>. Most of my side projects start as something I wanted to exist and couldn't find.</p>
+      </div>
+    </div>
   </section>
 
-  <!-- ============ CONTACT ============ -->
+  <!-- ===================== CONTACT ===================== -->
   <section id="contact" aria-labelledby="contact-h">
     <div class="sec-head">
       <h2 id="contact-h">Get in touch</h2>
     </div>
-
-    <ul class="bento" role="list">
-      <li class="s12 reveal">
-        <article class="card card--ink">
-          <p class="label">Currently</p>
-          <h3>Open to backend, distributed systems and applied-AI roles — remote, or abroad.</h3>
-          <p>If you're hiring for payments, infrastructure or agent systems — or you just want to argue about whether advisory locks were the right call — email is the fastest way to reach me.</p>
-          <div class="spacer"></div>
-          <div class="cta" style="margin-top:.7rem">
-            <a class="btn" href="mailto:shantanuchaudhary95@gmail.com">shantanuchaudhary95@gmail.com</a>
-            <a class="btn" href="https://www.linkedin.com/in/underoot-iota/" rel="me noopener">LinkedIn</a>
-            <a class="btn" href="https://github.com/underoot-iota" rel="me noopener">GitHub</a>
-          </div>
-        </article>
-      </li>
-    </ul>
+    <div class="entry" style="padding-top:0;border-top:0">
+      <div class="entry-meta">
+        <span class="mono">Open to work</span>
+      </div>
+      <div class="entry-body">
+        <p class="contact-lede">Backend, distributed systems and applied-AI roles — remote, or abroad.</p>
+        <p>If you're hiring for payments, infrastructure or agent systems — or you just want to argue about whether advisory locks were the right call — email is the fastest way to reach me.</p>
+        <p class="links-row">
+          <a href="mailto:shantanuchaudhary95@gmail.com">shantanuchaudhary95@gmail.com</a>
+          <a href="https://github.com/underoot-iota" rel="me noopener">GitHub</a>
+          <a href="https://www.linkedin.com/in/underoot-iota/" rel="me noopener">LinkedIn</a>
+        </p>
+      </div>
+    </div>
   </section>
 
 </div>
@@ -883,55 +659,43 @@ h2{
     <span>© <time datetime="2026">2026</time> Shantanu Chaudhary · Bengaluru, India</span>
     <span class="foot-links">
       <a href="mailto:shantanuchaudhary95@gmail.com">Email</a>
-      <a href="https://www.linkedin.com/in/underoot-iota/" rel="me noopener">LinkedIn</a>
       <a href="https://github.com/underoot-iota" rel="me noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/underoot-iota/" rel="me noopener">LinkedIn</a>
     </span>
   </footer>
 </div>
 
 <script>
-/* Theme toggle: system -> light -> dark -> system */
+/* Two visible states, three underlying. First press sets an explicit override;
+   pressing back to the system value clears it, so the OS preference resumes. */
 (function () {
   var btn = document.getElementById('theme-toggle');
   if (!btn) return;
-  var word = btn.querySelector('.theme-word');
-  var ORDER = ['system', 'light', 'dark'];
-  var LABEL = { system: 'follow system', light: 'light', dark: 'dark' };
+  var root = document.documentElement;
+  var mq = window.matchMedia('(prefers-color-scheme: dark)');
 
-  function paint(v) {
-    document.documentElement.dataset.theme = v;
-    if (word) word.textContent = v.charAt(0).toUpperCase() + v.slice(1);
-    btn.setAttribute('aria-label', 'Colour theme: ' + LABEL[v] + '. Click to change.');
+  function resolved() {
+    var t = root.dataset.theme;
+    if (t === 'light' || t === 'dark') return t;
+    return mq.matches ? 'dark' : 'light';
   }
-  paint(document.documentElement.dataset.theme || 'system');
+  function label() {
+    btn.setAttribute('aria-label',
+      resolved() === 'dark' ? 'Switch to light theme' : 'Switch to dark theme');
+  }
+  label();
 
   btn.addEventListener('click', function () {
-    var cur = document.documentElement.dataset.theme || 'system';
-    var next = ORDER[(ORDER.indexOf(cur) + 1) % ORDER.length];
-    paint(next);
+    var next = resolved() === 'dark' ? 'light' : 'dark';
+    var systemIs = mq.matches ? 'dark' : 'light';
     try {
-      if (next === 'system') localStorage.removeItem('theme');
-      else localStorage.setItem('theme', next);
-    } catch (e) {}
+      if (next === systemIs) { root.dataset.theme = 'system'; localStorage.removeItem('theme'); }
+      else { root.dataset.theme = next; localStorage.setItem('theme', next); }
+    } catch (e) { root.dataset.theme = next; }
+    label();
   });
-})();
 
-(function () {
-  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var items = document.querySelectorAll('.reveal');
-  if (reduce || !('IntersectionObserver' in window)) {
-    items.forEach(function (el) { el.classList.add('in'); });
-    return;
-  }
-  var io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (e, i) {
-      if (!e.isIntersecting) return;
-      var el = e.target;
-      setTimeout(function () { el.classList.add('in'); }, Math.min(i * 60, 240));
-      io.unobserve(el);
-    });
-  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
-  items.forEach(function (el) { io.observe(el); });
+  mq.addEventListener('change', label);
 })();
 </script>
 </body>

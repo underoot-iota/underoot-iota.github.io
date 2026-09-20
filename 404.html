@@ -4,66 +4,61 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light dark">
+<script>(function(){try{var t=localStorage.getItem('theme');
+if(t==='light'||t==='dark')document.documentElement.dataset.theme=t;}catch(e){}})();</script>
 <title>Page not found — Shantanu Chaudhary</title>
 <meta name="description" content="That page doesn't exist. Shantanu Chaudhary is a backend engineer in Bengaluru working on payments infrastructure and distributed systems.">
 <meta name="robots" content="noindex, follow">
 <link rel="icon" href="favicon.ico" sizes="32x32">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
-<meta name="theme-color" content="#f7f4ee" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#14120f" media="(prefers-color-scheme: dark)">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@400&amp;display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@400&amp;display=swap"></noscript>
 <style>
 :root{
   color-scheme: light dark;
-  --paper: light-dark(#f7f4ee, #14120f);
-  --paper-2: light-dark(#efeae0, #1b1815);
-  --ink:   light-dark(#16130f, #ede6da);
-  --ink-mid: light-dark(#4a443b, #b5ac9d);
-  --ink-soft: light-dark(#6d6559, #8d857a);
-  --rule:  light-dark(#e2dace, #302a24);
-  --card:  light-dark(#fffdf8, #1e1a16);
-  --focus: light-dark(#8e4327, #e0a07f);
-  --serif: Georgia, "Times New Roman", Times, serif;
-  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, "Helvetica Neue", Arial, sans-serif;
-  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --bg:        light-dark(oklch(0.990 0.002 250), oklch(0.170 0.008 250));
+  --bg-subtle: light-dark(oklch(0.972 0.004 250), oklch(0.212 0.010 250));
+  --border:    light-dark(oklch(0.910 0.007 250), oklch(0.290 0.012 250));
+  --border-hi: light-dark(oklch(0.840 0.010 250), oklch(0.380 0.014 250));
+  --text:      light-dark(oklch(0.235 0.013 250), oklch(0.955 0.004 250));
+  --text-mid:  light-dark(oklch(0.400 0.013 250), oklch(0.800 0.009 250));
+  --text-mute: light-dark(oklch(0.520 0.013 250), oklch(0.660 0.011 250));
+  --accent:    light-dark(oklch(0.510 0.165 25), oklch(0.760 0.120 32));
+  --sans: "Schibsted Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
+:root[data-theme="light"]{ color-scheme: light; }
+:root[data-theme="dark"]{ color-scheme: dark; }
 *,*::before,*::after{ box-sizing:border-box; }
 body{
   margin:0; min-height:100vh;
-  display:flex; align-items:center; justify-content:center;
-  padding:clamp(1.5rem,5vw,3rem);
-  background-color:var(--paper); color:var(--ink);
-  font-family:var(--sans); font-size:16px; line-height:1.65;
+  display:flex; align-items:center;
+  padding:clamp(1.5rem,6vw,4rem);
+  background-color:var(--bg); color:var(--text);
+  font-family:var(--sans); font-size:16px; line-height:1.62;
   -webkit-font-smoothing:antialiased;
 }
-main{ max-width:56ch; }
-.code{
-  font-family:var(--mono); font-size:.72rem; letter-spacing:.16em;
-  text-transform:uppercase; color:var(--ink-soft); margin:0 0 1rem;
-}
-h1{
-  font-family:var(--serif); font-weight:400;
-  font-size:clamp(2rem,6vw,3.1rem); line-height:1.08;
-  letter-spacing:-.015em; margin:0 0 1rem;
-}
-p{ margin:0 0 1.1rem; color:var(--ink-mid); }
-p strong{ color:var(--ink); font-weight:600; }
+main{ max-width:62ch; }
+.code{ font-family:var(--mono); font-size:.78rem; color:var(--text-mute); margin:0 0 1.1rem; }
+h1{ font-size:clamp(1.9rem,5vw,2.9rem); line-height:1.05; letter-spacing:-.028em; font-weight:500; margin:0 0 1rem; }
+p{ margin:0 0 1.1rem; color:var(--text-mid); }
+p strong{ color:var(--text); font-weight:600; }
 .bio{
-  background:var(--paper-2); border:1px solid var(--rule);
-  border-radius:14px; padding:1.1rem 1.25rem;
-  font-size:.92rem; line-height:1.66; color:var(--ink-mid);
-  margin:0 0 1.5rem;
+  background:var(--bg-subtle); border:1px solid var(--border); border-radius:6px;
+  padding:1.15rem 1.3rem; font-size:.94rem; line-height:1.66; margin:0 0 1.6rem;
 }
-.links{ display:flex; flex-wrap:wrap; gap:.6rem; }
-.btn{
-  display:inline-flex; align-items:center;
-  font-family:var(--mono); font-size:.78rem; letter-spacing:.06em;
-  text-decoration:none; padding:.6rem 1.05rem; border-radius:999px;
-  border:1px solid var(--rule); background:var(--card); color:var(--ink);
-  transition:transform .18s ease, border-color .18s ease;
+.links{ display:flex; flex-wrap:wrap; gap:0 1.5rem; font-size:.95rem; }
+a{
+  color:inherit; text-decoration:underline;
+  text-decoration-thickness:.08em; text-underline-offset:.18em;
+  text-decoration-color:var(--accent);
+  transition:color 120ms ease, text-decoration-color 120ms ease;
 }
-.btn:hover{ transform:translateY(-2px); border-color:var(--ink-soft); }
-.btn--solid{ background:var(--ink); color:var(--paper); border-color:var(--ink); }
-:focus-visible{ outline:3px solid var(--focus); outline-offset:3px; border-radius:3px; }
+a:hover{ color:var(--accent); }
+.links a[href^="http"]::after{ content:" ↗"; font-size:.85em; color:var(--text-mute); }
+:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; border-radius:2px; }
 @media (prefers-reduced-motion: reduce){ *{ transition-duration:.01ms !important; } }
 </style>
 </head>
@@ -86,12 +81,12 @@ p strong{ color:var(--ink); font-weight:600; }
     production systems with LLM agents.
   </p>
 
-  <div class="links">
-    <a class="btn btn--solid" href="/">Go to the homepage</a>
-    <a class="btn" href="mailto:shantanuchaudhary95@gmail.com">Email</a>
-    <a class="btn" href="https://www.linkedin.com/in/underoot-iota/" rel="me noopener">LinkedIn</a>
-    <a class="btn" href="https://github.com/underoot-iota" rel="me noopener">GitHub</a>
-  </div>
+  <p class="links">
+    <a href="/">Back to the homepage</a>
+    <a href="mailto:shantanuchaudhary95@gmail.com">Email</a>
+    <a href="https://github.com/underoot-iota" rel="me noopener">GitHub</a>
+    <a href="https://www.linkedin.com/in/underoot-iota/" rel="me noopener">LinkedIn</a>
+  </p>
 </main>
 </body>
 </html>
