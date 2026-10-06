@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<script>(function(){try{var t=localStorage.getItem('theme');
+if(t==='light'||t==='dark')document.documentElement.dataset.theme=t;}catch(e){}})();</script>
+<title>Page not found — Shantanu Chaudhary</title>
+<meta name="description" content="That page doesn't exist. Shantanu Chaudhary is a backend engineer in Bengaluru working on payments infrastructure and distributed systems.">
+<meta name="robots" content="noindex, follow">
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@400&amp;display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@400&amp;display=swap"></noscript>
+<style>
+:root{
+  color-scheme: light dark;
+  --bg:        light-dark(oklch(0.990 0.002 250), oklch(0.170 0.008 250));
+  --bg-subtle: light-dark(oklch(0.972 0.004 250), oklch(0.212 0.010 250));
+  --border:    light-dark(oklch(0.910 0.007 250), oklch(0.290 0.012 250));
+  --border-hi: light-dark(oklch(0.840 0.010 250), oklch(0.380 0.014 250));
+  --text:      light-dark(oklch(0.235 0.013 250), oklch(0.955 0.004 250));
+  --text-mid:  light-dark(oklch(0.400 0.013 250), oklch(0.800 0.009 250));
+  --text-mute: light-dark(oklch(0.520 0.013 250), oklch(0.660 0.011 250));
+  --accent:    light-dark(oklch(0.510 0.165 25), oklch(0.760 0.120 32));
+  --sans: "Schibsted Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+:root[data-theme="light"]{ color-scheme: light; }
+:root[data-theme="dark"]{ color-scheme: dark; }
+*,*::before,*::after{ box-sizing:border-box; }
+body{
+  margin:0; min-height:100vh;
+  display:flex; align-items:center;
+  padding:clamp(1.5rem,6vw,4rem);
+  background-color:var(--bg); color:var(--text);
+  font-family:var(--sans); font-size:16px; line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+}
+main{ max-width:62ch; }
+.code{ font-family:var(--mono); font-size:.78rem; color:var(--text-mute); margin:0 0 1.1rem; }
+h1{ font-size:clamp(1.9rem,5vw,2.9rem); line-height:1.05; letter-spacing:-.028em; font-weight:500; margin:0 0 1rem; }
+p{ margin:0 0 1.1rem; color:var(--text-mid); }
+p strong{ color:var(--text); font-weight:600; }
+.bio{
+  background:var(--bg-subtle); border:1px solid var(--border); border-radius:6px;
+  padding:1.15rem 1.3rem; font-size:.94rem; line-height:1.66; margin:0 0 1.6rem;
+}
+.links{ display:flex; flex-wrap:wrap; gap:0 1.5rem; font-size:.95rem; }
+a{
+  color:inherit; text-decoration:underline;
+  text-decoration-thickness:.08em; text-underline-offset:.18em;
+  text-decoration-color:var(--accent);
+  transition:color 120ms ease, text-decoration-color 120ms ease;
+}
+a:hover{ color:var(--accent); }
+.links a[href^="http"]::after{ content:" ↗"; font-size:.85em; color:var(--text-mute); }
+:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; border-radius:2px; }
+@media (prefers-reduced-motion: reduce){ *{ transition-duration:.01ms !important; } }
+</style>
+</head>
+<body>
+<main>
+  <p class="code">404 — page not found</p>
+  <h1>That page isn't here.</h1>
+  <p>
+    It may have moved, or the link that sent you here may have been guessed rather than followed.
+    Either way, here is the thing you were probably looking for.
+  </p>
+
+  <p class="bio">
+    <strong>Shantanu Chaudhary</strong> is a backend engineer based in Bengaluru, India, working on
+    payments infrastructure and distributed systems. He is a Software Development Engineer on the
+    App Payments pod at slice, where he owns the BBPS bill-payments backend — a Go service handling
+    over 1.7 million transactions a month. Before slice, he built the backend for DreamPlay at
+    Dream11 as it scaled from zero to over 1.5 million users in six months. He works in Go, Java
+    and Python across gRPC, Apache Kafka, PostgreSQL and Redis on AWS and Kubernetes, and builds
+    production systems with LLM agents.
+  </p>
+
+  <p class="links">
+    <a href="/">Back to the homepage</a>
+    <a href="mailto:shantanuchaudhary95@gmail.com">Email</a>
+    <a href="https://github.com/underoot-iota" rel="me noopener">GitHub</a>
+    <a href="https://www.linkedin.com/in/underoot-iota/" rel="me noopener">LinkedIn</a>
+  </p>
+</main>
+</body>
+</html>
