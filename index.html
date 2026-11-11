@@ -413,7 +413,7 @@ section{ padding-block:clamp(2.25rem,5vw,3.5rem); border-top:1px solid var(--bor
         Before that I built <strong>DreamPlay's backend at Dream11</strong> as the product went from
         zero to <strong>1.5M+ users in six months</strong>. I work in Go, Java and Python across gRPC,
         Kafka, PostgreSQL and Redis on AWS and Kubernetes, and I build production systems with LLM
-        agents, including one that checks my team's production deploys.
+        agents, including one that checks almost every production deploy my team ships.
       </p>
 
       <p class="links-row">
@@ -519,11 +519,11 @@ section{ padding-block:clamp(2.25rem,5vw,3.5rem); border-top:1px solid var(--bor
     <article class="entry entry--lead">
       <div class="entry-meta">
         <span class="org">Mad-Eye</span>
-        <span class="mono">co-built at slice</span>
+        <span class="mono">in production at slice</span>
       </div>
       <div class="entry-body">
         <h3>An agent that checks our production deploys</h3>
-        <p>Mad-Eye watches my team's services after each production deploy. It pulls the metrics, the logs and the code diff for the deployment, reasons about whether the change is doing what it claimed it would, and says so in Slack. It started as a hackathon entry, and I built it with two teammates. My part was taking it to production: the infrastructure, the Slack controls and the security review.</p>
+        <p>Mad-Eye checks almost every production deploy my team ships. It pulls the metrics, the logs and the code diff for the deployment, reasons about whether the change is doing what it claimed it would, and says so in Slack. It started as a hackathon entry, and I took it to production: the infrastructure, the Slack controls and the security review.</p>
         <p>Most of the design work went into trust boundaries rather than prompts. The agent holds production credentials and reads production logs, which is text that users, and therefore attackers, can influence. So it is explicit about what the agent may act on, what it may only report, and where an injected instruction stops.</p>
         <p class="stack">Python · FastAPI · Temporal · Claude on AWS Bedrock · Langfuse</p>
       </div>
