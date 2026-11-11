@@ -413,7 +413,7 @@ section{ padding-block:clamp(2.25rem,5vw,3.5rem); border-top:1px solid var(--bor
         Before that I built <strong>DreamPlay's backend at Dream11</strong> as the product went from
         zero to <strong>1.5M+ users in six months</strong>. I work in Go, Java and Python across gRPC,
         Kafka, PostgreSQL and Redis on AWS and Kubernetes, and I build production systems with LLM
-        agents, including one that reviews every production deploy.
+        agents, including one that checks my team's production deploys.
       </p>
 
       <p class="links-row">
@@ -519,11 +519,11 @@ section{ padding-block:clamp(2.25rem,5vw,3.5rem); border-top:1px solid var(--bor
     <article class="entry entry--lead">
       <div class="entry-meta">
         <span class="org">Mad-Eye</span>
-        <span class="mono">shipped at slice</span>
+        <span class="mono">co-built at slice</span>
       </div>
       <div class="entry-body">
-        <h3>An agent that reviews every deploy</h3>
-        <p>Every production release at slice is reviewed by an LLM agent. Mad-Eye pulls the metrics, the logs and the code diff for a deployment, reasons about whether the change is doing what it claimed it would, and says so in Slack.</p>
+        <h3>An agent that checks our production deploys</h3>
+        <p>Mad-Eye watches my team's services after each production deploy. It pulls the metrics, the logs and the code diff for the deployment, reasons about whether the change is doing what it claimed it would, and says so in Slack. It started as a hackathon entry, and I built it with two teammates. My part was taking it to production: the infrastructure, the Slack controls and the security review.</p>
         <p>Most of the design work went into trust boundaries rather than prompts. The agent holds production credentials and reads production logs, which is text that users, and therefore attackers, can influence. So it is explicit about what the agent may act on, what it may only report, and where an injected instruction stops.</p>
         <p class="stack">Python · FastAPI · Temporal · Claude on AWS Bedrock · Langfuse</p>
       </div>
@@ -531,12 +531,12 @@ section{ padding-block:clamp(2.25rem,5vw,3.5rem); border-top:1px solid var(--bor
 
     <article class="entry">
       <div class="entry-meta">
-        <span class="org">Claude Code harness</span>
-        <span class="mono">built for my team</span>
+        <span class="org">Claude Code workflow</span>
+        <span class="mono">used by most of my team</span>
       </div>
       <div class="entry-body">
         <h3>The AI workflow my team ships through</h3>
-        <p>A task orchestrator that fans work out to explorer, planner and reviewer subagents over an in-repo knowledge base, with eval suites so prompt changes get measured. The part people reach for most is the observability skills: an MCP-backed path from an alert to a live investigation with the dashboards already pulled.</p>
+        <p>Built on the company's agent harness. My part is the layer on top: context kits that live in each service repo, so every teammate's session starts with the service's architecture and past learnings; a task command that runs explore, plan, test-first implementation and parallel review; and observability skills that turn an alert name into its real alert rule and a live investigation of logs and traces.</p>
         <p class="stack">Claude Code · MCP · subagent orchestration · evals · hooks</p>
       </div>
     </article>
